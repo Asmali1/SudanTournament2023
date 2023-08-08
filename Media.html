@@ -1,41 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="with-device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SASF OHIO</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css">
 </head>
 <body>  
 <section class="header">
     <nav>
         <a href="index.html"><img src="images/Logo2.png"></a>
-        <div class="nav-links">
-            <i class="fa fa-minus"></i>
+        <i class="fas fa-bars fa-2x" id="openSidePanel"></i>
+        <div class="nav-links" id="sidePanel">
             <ul>
-                <li><a href"">HOME</a></li>
-                <li><a href"">SCHEDULE</a></li>
-                <li><a href"">GALLERY (COMING SOON)</a></li>
-                <li><a href"">ABOUT US</a></li>
+                <li><a href="#">HOME</a></li>
+                <li><a href="#">SCHEDULE</a></li>
+                <li><a href="#">GALLERY (COMING SOON)</a></li>
+                <li><a href="#">ABOUT US</a></li>
             </ul>
+            <i class="fa fa-bars fa-2x toggle-close" id="toggleBtn"></i>
         </div>
-        <i class="fa fa-minus"></i>
     </nav>
 
+    <div class="text-box">
+        <h1>STSS ANNUAL TOURNAMENT</h1>
+        <p>Welcome to the Ohio Sudanese American Soccer Federation Webpage.</p>
+        <a href="" class="hero-btn">Visit us to know more</a>
+    </div>
+</section>
 
-<div class="text-box">
-<h1>STSS ANNUAL TOURNAMENT</h1>
-<p>Welcome to the Ohio Sudanese American Soccer Federation Webpage.</p>
-<a href="" class="hero-btn">Visit us to know more</a>
-</div>
+<script>
+document.getElementById('openSidePanel').addEventListener('click', function() {
+    const sidePanel = document.getElementById('sidePanel');
+    sidePanel.style.display = 'block';
+});
+
+document.getElementById('toggleBtn').addEventListener('click', function() {
+    const sidePanel = document.getElementById('sidePanel');
+    const toggleIcon = document.getElementById('toggleBtn');
+    if (sidePanel.style.display === 'none' || sidePanel.style.display === '') {
+        sidePanel.style.display = 'block';
+        toggleIcon.classList.remove('fas fa-bars fa-2x'); // remove bars icon
+toggleIcon.classList.add('fas fa-times fa-2x');    // add times (X) icon
+
+    } else {
+        sidePanel.style.display = 'none';
+        toggleIcon.classList.remove('fas fa-bars fa-2x'); // remove bars icon
+toggleIcon.classList.add('fas fa-times fa-2x');    // add times (X) icon
+
+    }
+});
 
 
-    </section>
+</script>
 
-
-
+<script src="script.js"></script>
 </body>
 </html>
