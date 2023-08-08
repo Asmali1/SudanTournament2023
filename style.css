@@ -119,9 +119,9 @@ nav .fa {
         padding: 4px 8px; /* Some padding for better touch targets */
         font-size: 16px;
     }
-    .nav-links ul li {
+    /* .nav-links ul li {
         display: block;
-    }
+    } */
 
     .nav-links {
         position: absolute;
