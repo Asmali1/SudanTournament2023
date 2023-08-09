@@ -4,6 +4,108 @@
     font-family: 'Roboto Condensed', sans-serif;
 }
 
+body {
+    background-color: #f1e4c8;  /* A soft beige color */
+    /* background-image: url('path_to_islamic_pattern.png'); A light Islamic pattern */
+    /* background-repeat: repeat; */
+}
+
+#prayer-times-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 450px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.prayer-times-content {
+    text-align: center;
+}
+
+#prayer-times-section h2 {
+    font-size: 24px;
+    color: #5d4524; /* Match button color */
+    margin-bottom: 10px;
+    border-bottom: 2px solid #DAA520; /* Golden color */
+    padding-bottom: 5px;
+}
+
+
+
+#prayer-times-section h4 {
+    text-align: center;
+    font-weight: bold;
+    color: #006400; /* Dark Green */
+    margin-bottom: 20px;
+    font-size: 24px;
+    border-bottom: 2px solid #DAA520; /* Golden color */
+    padding-bottom: 10px;
+}
+
+#prayer-times-section table {
+    width: 100%;
+    margin: 10px 0;
+    border-collapse: collapse;
+}
+
+#prayer-times-section th, #prayer-times-section td {
+    padding: 8px 12px;
+    border: 1px solid #806641; /* Updated to a soft brown for an Islamic touch */
+    text-align: left;
+}
+
+#prayer-times-section tr:nth-child(odd) {
+    background-color: #e6e6e6;
+}
+
+#prayer-times-section tr:hover {
+    background-color: #DAA520; /* Golden highlight */
+    color: #FFFFFF;  /* White text */
+}
+
+#prev-day, #next-day {
+    padding: 10px 20px;
+    background-color: #5d4524;
+    color: #f1e4c8;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 5px;
+    
+}
+
+#prev-day:hover, #next-day:hover {
+    background-color: #806641;
+}
+.fadeOut {
+    animation: fadeOutEffect 0.5s forwards;
+}
+
+.fadeIn {
+    animation: fadeInEffect 0.5s forwards;
+}
+
+@keyframes fadeOutEffect {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes fadeInEffect {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 .header {
     min-height: 100vh;
     width: 100%;
@@ -99,10 +201,28 @@ nav .fa {
     display: none;
 }
 
+.text-box div {
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    margin: 15px 0;
+    border-radius: 5px;
+}
+
+.text-box div h4 {
+    margin-bottom: 10px;
+    color: #f44336;
+}
+
+.text-box div p {
+    margin-bottom: 5px;
+    color: #fff;
+}
+
 @media(max-width: 1024px) {
     .text-box h1 {
         font-size: 20px;
     }
+
     .nav-links ul li {
         list-style: none;
         display: block;   /* Make each list item block level to stack vertically */
@@ -119,35 +239,29 @@ nav .fa {
         padding: 4px 8px; /* Some padding for better touch targets */
         font-size: 16px;
     }
-    /* .nav-links ul li {
-        display: block;
-    } */
 
     .nav-links {
         position: absolute;
         top: 0;
         right: 0;
         width: 50%;
-        background: #3e3d3f;
         height: 100vh;
+        background-color: rgba(0,0,0,0.9);
         z-index: 2;
-        overflow-y: auto; /* Add scrollbar if content exceeds the height */
+        padding: 30px;
+        overflow-y: auto;   /* Allow vertical scrolling */
     }
-    
+
     nav .fa {
         display: block;
-        color: #fff;
-        margin: 10px;
+        position: absolute;
+        top: 27px;
+        right: 35px;
         font-size: 22px;
         cursor: pointer;
     }
-    
-    .toggle-close {
-        position: absolute; 
-        bottom: 10px; 
-        left: 50%; 
-        transform: translateX(-50%);
+
+    nav .fa-times {
+        display: none;
     }
-    
-    
 }
