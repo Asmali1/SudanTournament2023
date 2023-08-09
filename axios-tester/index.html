@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prayer Times API Test</title>
+    <style>
+        body {
+            background-color: #f5e8d7;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #4a4a4a;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #006400;
+            font-size: 3rem;
+            border-bottom: 2px solid #d4af37;
+            margin-bottom: 30px;
+            padding: 20px;
+        }
+
+        #sliderContainer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #tablesContainer {
+            display: flex;
+            transition: transform 0.5s;
+        }
+
+        table {
+            min-width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+            background-color: #FDFCF8;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #006400;
+            color: white;
+            font-weight: bold;
+            position: relative;
+        }
+
+        th:after {
+            content: "";
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-image: linear-gradient(45deg, #D4AF37, #FDFCF8, #D4AF37);
+        }
+
+        td {
+            color: #006400;
+            font-weight: 500;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #F7F5EE;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #006400;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #005200;
+        }
+
+        #prevButton {
+            float: left;
+        }
+
+        #nextButton {
+            float: right;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Islamic Prayer Times</h1>
+    <button id="prevButton">Previous</button>
+    <button id="nextButton">Next</button>
+    <div id="sliderContainer">
+        <div id="tablesContainer"></div>
+    </div>
+
+    <script>
+        const apiUrl = 'http://api.aladhan.com/v1/calendarByAddress/2017/4?address=6400%20Dublin%20Park%20Drive,%20Dublin%20OH&method=2';
+
+        let currentIndex = 0;
+        const convertTo12HourFormat = (time) => {
+    let [hours, minutes] = time.split(":");
+    hours = parseInt(hours, 10);
+    const suffix = hours >= 12 ? 'PM (EDT)' : 'AM (EDT)';
+    if (hours > 12) {
+        hours -= 12;
+    } else if (hours === 0) {
+        hours = 12;
+    }
+    return `${hours}:${minutes} ${suffix}`;
+};
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                if (data.code === 200 && data.status === "OK") {
+                    const tablesContainer = document.getElementById("tablesContainer");
+
+                    data.data.forEach(day => {
+                      const table = `
+    <table>
+        <thead>
+            <tr>
+                <th colspan="9">${day.date.readable}</th>
+            </tr>
+            <tr>
+                <th>Fajr</th>
+                <th>Sunrise</th>
+                <th>Dhuhr</th>
+                <th>Asr</th>
+                <th>Sunset</th>
+                <th>Maghrib</th>
+                <th>Isha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>${convertTo12HourFormat(day.timings.Fajr.split(" ")[0])}</td>
+                <td>${convertTo12HourFormat(day.timings.Sunrise.split(" ")[0])}</td>
+                <td>${convertTo12HourFormat(day.timings.Dhuhr.split(" ")[0])}</td>
+                <td>${convertTo12HourFormat(day.timings.Asr.split(" ")[0])}</td>
+                <td>${convertTo12HourFormat(day.timings.Sunset.split(" ")[0])}</td>
+                <td>${convertTo12HourFormat(day.timings.Maghrib.split(" ")[0])}</td>
+                <td>${convertTo12HourFormat(day.timings.Isha.split(" ")[0])}</td>
+
+            </tr>
+        </tbody>
+    </table>
+`;
+                        tablesContainer.innerHTML += table;
+                    });
+
+                    document.getElementById("prevButton").addEventListener("click", () => {
+                        currentIndex = Math.max(currentIndex - 1, 0);
+                        tablesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+                    });
+
+                    document.getElementById("nextButton").addEventListener("click", () => {
+                        currentIndex = Math.min(currentIndex + 1, data.data.length - 1);
+                        tablesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+                    });
+
+                } else {
+                    console.error("Failed to fetch prayer times");
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error);
+            });
+    </script>
+</body>
+</html>
