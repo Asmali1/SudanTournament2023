@@ -1,62 +1,231 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SASF OHIO</title>
+    <style>
+        body {
+            background-color: #f5e8d7;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #4a4a4a;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #006400;
+            font-size: 3rem;
+            border-bottom: 2px solid #d4af37;
+            margin-bottom: 30px;
+            padding: 20px;
+        }
+
+        #sliderContainer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #tablesContainer {
+            display: flex;
+            transition: transform 0.5s;
+        }
+
+        table {
+            min-width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+            background-color: #FDFCF8;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #006400;
+            color: white;
+            font-weight: bold;
+            position: relative;
+        }
+
+        th:after {
+            content: "";
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-image: linear-gradient(45deg, #D4AF37, #FDFCF8, #D4AF37);
+        }
+
+        td {
+            color: #006400;
+            font-weight: 500;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #F7F5EE;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #006400;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #005200;
+        }
+
+        #prevButton {
+            float: left;
+        }
+
+        #nextButton {
+            float: right;
+        }
+    </style>
+    
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/all.min.css">
 </head>
-<body>  
-<section class="header">
-    <nav>
-        <a href="index.html"><img src="images/Logo2.png"></a>
-        <i class="fas fa-bars fa-2x" id="openSidePanel"></i>
-        <div class="nav-links" id="sidePanel">
-            <ul>
-                <li><a href="#">HOME</a></li>
-                <li><a href="#">SCHEDULE</a></li>
-                <li><a href="#">GALLERY (COMING SOON)</a></li>
-                <li><a href="#">ABOUT US</a></li>
-            </ul>
-            <i class="fa fa-bars fa-2x toggle-close" id="toggleBtn"></i>
+<body>
+    <!-- Header from the second code -->
+    <section class="header">
+        <nav>
+            <a href="index.html"><img src="images/Logo2.png"></a>
+            <i class="fas fa-bars fa-2x" id="openSidePanel"></i>
+            <div class="nav-links" id="sidePanel">
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">SCHEDULE</a></li>
+                    <li><a href="#">GALLERY (COMING SOON)</a></li>
+                    <li><a href="#">ABOUT US</a></li>
+                </ul>
+                <i class="fa fa-bars fa-2x toggle-close" id="toggleBtn"></i>
+            </div>
+        </nav>
+
+        <div class="text-box">
+            <h1>STSS ANNUAL TOURNAMENT</h1>
+            <p>Welcome to the Ohio Sudanese American Soccer Federation Webpage.</p>
+            <a href="" class="hero-btn">Visit us to know more</a>
         </div>
-    </nav>
+    </section>
 
-    <div class="text-box">
-        <h1>STSS ANNUAL TOURNAMENT</h1>
-        <p>Welcome to the Ohio Sudanese American Soccer Federation Webpage.</p>
-        <a href="" class="hero-btn">Visit us to know more</a>
+    <!-- Content from the first code -->
+    <h1>Islamic Prayer Times</h1>
+    <button id="prevButton">Previous</button>
+    <button id="nextButton">Next</button>
+    <div id="sliderContainer">
+        <div id="tablesContainer"></div>
     </div>
-</section>
 
-<script>
-document.getElementById('openSidePanel').addEventListener('click', function() {
-    const sidePanel = document.getElementById('sidePanel');
-    sidePanel.style.display = 'block';
-});
+    <script>
+        const apiUrl = 'http://api.aladhan.com/v1/calendarByAddress/2023/9?address=6400%20Dublin%20Park%20Drive,%20Dublin%20OH&method=2';
 
-document.getElementById('toggleBtn').addEventListener('click', function() {
-    const sidePanel = document.getElementById('sidePanel');
-    const toggleIcon = document.getElementById('toggleBtn');
-    if (sidePanel.style.display === 'none' || sidePanel.style.display === '') {
-        sidePanel.style.display = 'block';
-        toggleIcon.classList.remove('fas fa-bars fa-2x'); // remove bars icon
-toggleIcon.classList.add('fas fa-times fa-2x');    // add times (X) icon
+        let currentIndex = 0;
+        const convertTo12HourFormat = (time) => {
+            let [hours, minutes] = time.split(":");
+            hours = parseInt(hours, 10);
+            const suffix = hours >= 12 ? 'PM (EDT)' : 'AM (EDT)';
+            if (hours > 12) {
+                hours -= 12;
+            } else if (hours === 0) {
+                hours = 12;
+            }
+            return `${hours}:${minutes} ${suffix}`;
+        };
+        const currentDate = new Date();
+        const currentDay = currentDate.getDate();
+        currentIndex = currentDay - 1;  // Subtract 1 to get zero-based index
 
-    } else {
-        sidePanel.style.display = 'none';
-        toggleIcon.classList.remove('fas fa-bars fa-2x'); // remove bars icon
-toggleIcon.classList.add('fas fa-times fa-2x');    // add times (X) icon
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const timings = data.data.map(day => day.timings);
+                const tablesContainer = document.getElementById('tablesContainer');
 
-    }
-});
+                timings.forEach((time, index) => {
+                    const table = document.createElement('table');
+                    const thead = document.createElement('thead');
+                    const tbody = document.createElement('tbody');
+                    const dateRow = document.createElement('tr');
+                    const th = document.createElement('th');
+                    th.setAttribute('colspan', '2');
+                    th.innerText = `September ${index + 1}, 2023`;
+                    dateRow.appendChild(th);
+                    thead.appendChild(dateRow);
 
+                    Object.keys(time).forEach(key => {
+                        if (key !== 'Imsak' && key !== 'Midnight' && key !== 'Sunset') {
+                            const tr = document.createElement('tr');
+                            const td1 = document.createElement('td');
+                            td1.innerText = key;
+                            const td2 = document.createElement('td');
+                            td2.innerText = convertTo12HourFormat(time[key].split(' ')[0]);
+                            tr.appendChild(td1);
+                            tr.appendChild(td2);
+                            tbody.appendChild(tr);
+                        }
+                    });
 
-</script>
+                    table.appendChild(thead);
+                    table.appendChild(tbody);
+                    tablesContainer.appendChild(table);
+                });
 
-<script src="script.js"></script>
+                tablesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+            });
+
+        document.getElementById('prevButton').addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                document.getElementById('tablesContainer').style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+        });
+
+        document.getElementById('nextButton').addEventListener('click', () => {
+            if (currentIndex < 29) {
+                currentIndex++;
+                document.getElementById('tablesContainer').style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+        });
+        
+        document.getElementById('openSidePanel').addEventListener('click', function() {
+            const sidePanel = document.getElementById('sidePanel');
+            sidePanel.style.display = 'block';
+        });
+
+        document.getElementById('toggleBtn').addEventListener('click', function() {
+            const sidePanel = document.getElementById('sidePanel');
+            const toggleIcon = document.getElementById('toggleBtn');
+            if (sidePanel.style.display === 'none' || sidePanel.style.display === '') {
+                sidePanel.style.display = 'block';
+                toggleIcon.classList.remove('fas fa-bars fa-2x'); // remove bars icon
+                toggleIcon.classList.add('fas fa-times fa-2x');    // add times (X) icon
+            } else {
+                sidePanel.style.display = 'none';
+                toggleIcon.classList.remove('fas fa-times fa-2x'); // remove times (X) icon
+                toggleIcon.classList.add('fas fa-bars fa-2x');    // add bars icon
+            }
+        });
+    </script>
+
+    <script src="script.js"></script>
 </body>
 </html>

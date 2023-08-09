@@ -107,7 +107,7 @@
     </div>
 
     <script>
-        const apiUrl = 'http://api.aladhan.com/v1/calendarByAddress/2017/4?address=6400%20Dublin%20Park%20Drive,%20Dublin%20OH&method=2';
+        const apiUrl = 'http://api.aladhan.com/v1/calendarByAddress/2023/9?address=6400%20Dublin%20Park%20Drive,%20Dublin%20OH&method=2';
 
         let currentIndex = 0;
         const convertTo12HourFormat = (time) => {
@@ -121,14 +121,17 @@
     }
     return `${hours}:${minutes} ${suffix}`;
 };
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                if (data.code === 200 && data.status === "OK") {
-                    const tablesContainer = document.getElementById("tablesContainer");
+const currentDate = new Date();
+const currentDay = currentDate.getDate();
+currentIndex = currentDay - 1;  // Adjusting for 0-based indexing
+fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+        if (data.code === 200 && data.status === "OK" && data.data && data.data.length > 0) {
+            const tablesContainer = document.getElementById("tablesContainer");
 
-                    data.data.forEach(day => {
-                      const table = `
+            data.data.forEach(day => {
+                const table = `
     <table>
         <thead>
             <tr>
@@ -158,26 +161,27 @@
         </tbody>
     </table>
 `;
-                        tablesContainer.innerHTML += table;
-                    });
-
-                    document.getElementById("prevButton").addEventListener("click", () => {
-                        currentIndex = Math.max(currentIndex - 1, 0);
-                        tablesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
-                    });
-
-                    document.getElementById("nextButton").addEventListener("click", () => {
-                        currentIndex = Math.min(currentIndex + 1, data.data.length - 1);
-                        tablesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
-                    });
-
-                } else {
-                    console.error("Failed to fetch prayer times");
-                }
-            })
-            .catch(error => {
-                console.error("Error fetching data:", error);
+tablesContainer.innerHTML += table;
             });
+
+            tablesContainer.style.transform = `translateX(-${currentIndex * 100}%)`; // Move this out of the forEach loop
+
+            document.getElementById("prevButton").addEventListener("click", () => {
+                currentIndex = Math.max(currentIndex - 1, 0);
+                tablesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+            });
+
+            document.getElementById("nextButton").addEventListener("click", () => {
+                currentIndex = Math.min(currentIndex + 1, data.data.length - 1);
+                tablesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+            });
+        } else {
+            console.error("Failed to fetch prayer times");
+        }
+    })
+    .catch(error => {
+        console.error("Error fetching data:", error);
+    });
     </script>
 </body>
 </html>
