@@ -91,3 +91,4 @@ fetch(apiURL)
 
         displayPrayerTimesForDay(currentDayIndex, currentData);
     });
+    
