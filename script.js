@@ -6,11 +6,12 @@ function formatWithLeadingZero(number) {
 }
 
 // Convert 24-hour format to 12-hour format with EDT
+// Convert 24-hour format to 12-hour format with EST
 function convertTo12Hour(time) {
     let [hours, minutes] = time.split(':');
     let AMorPM = +hours < 12 ? 'AM' : 'PM';
     if (+hours > 12) hours -= 12;
-    return `${hours}:${minutes} ${AMorPM} EDT`;
+    return `${hours}:${minutes} ${AMorPM} EST`;  // Change EDT to EST
 }
 
 function shortMonthToFull(monthShort) {
