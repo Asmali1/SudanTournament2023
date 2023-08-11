@@ -1,0 +1,15 @@
+version: 0.1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - echo "PreBuild Phase - Installing dependencies"
+    build:
+      commands:
+        - echo "Build Phase - No build commands to run for a static site"
+  artifacts:
+    baseDirectory: /
+    files:
+      - '**/*'
+  cache:
+    paths: []
