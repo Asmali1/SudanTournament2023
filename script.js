@@ -58,7 +58,36 @@ function displayPrayerTimesForDay(index, data) {
     const day = data.data[index];
     const dateParts = day.date.readable.split(" ");
     const formattedDate = `${shortMonthToFull(dateParts[1])} ${dateParts[0]}, ${dateParts[2]}`;
+    const now = new Date();
 
+    for (const prayer of desiredPrayerTimes) {
+        const time = convertTo12Hour(day.timings[prayer].split(' ')[0]).split(" ")[0];
+        const prayerHour = parseInt(time.split(":")[0]);
+        const prayerMinute = parseInt(time.split(":")[1]);
+        const prayerDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), prayerHour, prayerMinute);
+        if (now < prayerDate) {
+            nextPrayerTime = prayerDate;
+            nextPrayerName = prayer;
+            break;
+        }
+    }
+    if (nextPrayerTime) {
+        if (countdownInterval) {
+            clearInterval(countdownInterval);  // Clear the existing countdown if any.
+        }
+    
+        countdownInterval = setInterval(() => {
+            const now = new Date();
+            let diff = nextPrayerTime - now;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            diff %= (1000 * 60 * 60);
+            const minutes = Math.floor(diff / (1000 * 60));
+            diff %= (1000 * 60);
+            const seconds = Math.floor(diff / 1000);
+            document.getElementById("countdown").innerText = `Next ${nextPrayerName}: ${formatWithLeadingZero(hours)}:${formatWithLeadingZero(minutes)}:${formatWithLeadingZero(seconds)}`;
+        }, 1000);
+    }
+    
     let timingsHtml = `<h4>${formattedDate}</h4><table>`;
     for (const prayer of desiredPrayerTimes) {
         const time = day.timings[prayer];
@@ -82,6 +111,10 @@ const currentDate = currentDateObj.getDate();
 let currentData = null;
 let currentDayIndex;
 
+let countdownInterval; // Global declaration
+let nextPrayerTime = null;
+let nextPrayerName = "";
+
 const desiredPrayerTimes = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
 
 const apiURL = `http://api.aladhan.com/v1/calendarByAddress/${currentYear}/${currentMonth}?address=6400 Dublin Park Drive, Dublin OH&method=2`;
@@ -93,3 +126,17 @@ fetch(apiURL)
         currentDayIndex = currentData.data.findIndex(day => day.date.readable === todayFormatted);
         displayPrayerTimesForDay(currentDayIndex, currentData);
     });
+    if (!countdownInterval) {
+        countdownInterval = setInterval(() => {
+            const now = new Date();
+            if (nextPrayerTime) {
+                let diff = nextPrayerTime - now;
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                diff %= (1000 * 60 * 60);
+                const minutes = Math.floor(diff / (1000 * 60));
+                diff %= (1000 * 60);
+                const seconds = Math.floor(diff / 1000);
+                document.getElementById("countdown").innerText = `Next ${nextPrayerName}: ${formatWithLeadingZero(hours)}:${formatWithLeadingZero(minutes)}:${formatWithLeadingZero(seconds)}`;
+            }
+        }, 1000);
+    }
