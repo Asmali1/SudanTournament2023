@@ -21,6 +21,7 @@ body {
     max-width: 600px; /* Increased max-width */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border: 5px solid #DAA520; 
+    
 }
 
 .navigation-buttons {
@@ -232,7 +233,19 @@ nav .fa {
     .text-box h1 {
         font-size: 20px;
     }
+    #openSidePanel {
+        display: block;
+    }
 
+    /* Hide the close button inside the side panel by default */
+    .toggle-close {
+        display: none;
+    }
+
+    /* Show the close button when the side panel is open */
+    .nav-links[style*="display: block"] .toggle-close {
+        display: block;
+    }
     .nav-links ul li {
         list-style: none;
         display: block;   /* Make each list item block level to stack vertically */
