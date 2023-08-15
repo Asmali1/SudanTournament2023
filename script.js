@@ -39,6 +39,9 @@ function toggleSidePanel() {
 }
 
 function navigateDay(direction, data) {
+    if (countdownInterval) {
+        clearInterval(countdownInterval);  // Clear the countdown whenever navigating days.
+    }
     const prayerTimesSection = document.getElementById('prayer-times-section');
     prayerTimesSection.classList.add('fadeOut');
 
@@ -84,7 +87,7 @@ function displayPrayerTimesForDay(index, data) {
             const minutes = Math.floor(diff / (1000 * 60));
             diff %= (1000 * 60);
             const seconds = Math.floor(diff / 1000);
-            document.getElementById("countdown").innerText = `Next ${nextPrayerName}: ${formatWithLeadingZero(hours)}:${formatWithLeadingZero(minutes)}:${formatWithLeadingZero(seconds)}`;
+            document.getElementById("prayer-countdown").innerText = `Next ${nextPrayerName}: ${formatWithLeadingZero(hours)}:${formatWithLeadingZero(minutes)}:${formatWithLeadingZero(seconds)}`;
         }, 1000);
     }
     
@@ -136,7 +139,7 @@ fetch(apiURL)
                 const minutes = Math.floor(diff / (1000 * 60));
                 diff %= (1000 * 60);
                 const seconds = Math.floor(diff / 1000);
-                document.getElementById("countdown").innerText = `Next ${nextPrayerName}: ${formatWithLeadingZero(hours)}:${formatWithLeadingZero(minutes)}:${formatWithLeadingZero(seconds)}`;
+                document.getElementById("prayer-countdown").innerText = `Next ${nextPrayerName}: ${formatWithLeadingZero(hours)}:${formatWithLeadingZero(minutes)}:${formatWithLeadingZero(seconds)}`;
             }
         }, 1000);
     }
