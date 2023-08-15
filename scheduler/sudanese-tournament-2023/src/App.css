@@ -1,0 +1,21 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* This will prevent any unexpected scroll */
+}
+
+#root {
+  height: 100%;
+}
+
+
+
+.rotatedIframe {
+  transform: rotate(-90deg);
+  transform-origin: center center;
+  width: 100vh; /* this swaps the width and height */
+  height: 100vw; 
+  overflow-y: auto !important;
+}
