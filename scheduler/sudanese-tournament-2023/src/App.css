@@ -12,10 +12,4 @@ body, html {
 
 
 
-.rotatedIframe {
-  transform: rotate(-90deg);
-  transform-origin: center center;
-  width: 100vh; /* this swaps the width and height */
-  height: 100vw; 
-  overflow-y: auto !important;
-}
+
