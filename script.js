@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', function() {
+
 // --- Utility Functions ---
 
 // Utility function to format a single digit number with a leading zero
@@ -256,3 +258,5 @@ document.getElementById('translateBtn').addEventListener('click', translateConte
 
 
 document.getElementById('translateBtn').addEventListener('click', translateContent);
+});
+
