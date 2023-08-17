@@ -238,6 +238,14 @@ nav .fa {
     margin-bottom: 5px;
     color: #fff;
 }
+footer {
+    text-align: center;
+    padding: 20px 0; /* Adjust as needed */
+}
+
+footer p {
+    margin: 0; /* Remove default paragraph margin */
+}
 
 @media(max-width: 1024px) {
     .text-box h1 {
