@@ -305,5 +305,18 @@ nav .fa {
     .toggle-close {
         color: #fff;  /* White color */
     }
-    
+    #countdown {
+        font-size: 15px;
+        text-align: center;
+        margin-top: 50px;
+        color: #fff;
+      }
 }
+
+#countdown {
+    font-size: 24px;
+    text-align: center;
+
+    color: #fff;
+  }
+  
