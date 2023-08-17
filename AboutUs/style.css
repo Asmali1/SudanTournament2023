@@ -83,7 +83,74 @@ li{
     list-style-type:disc;
     font-size: 30px;
     text-align: center;
+    background-color: aqua;
 }
+
+h1{
+    text-align: center;
+    font-size: 50px;
+}
+
+p{
+    font-size: 20px;
+}
+
+
+
+.row1{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    text-align: center;
+}
+
+.list-col{
+    flex-basis: 31%;
+    background: #fff3f3;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    padding: 20px 12px;
+    box-sizing: border-box;
+}
+
+.column2{
+    flex-basis: 31%;
+    background: #fff3f3;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    padding: 20px 12px;
+    box-sizing: border-box;
+}
+
+.row2{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    text-align: center;
+}
+
+.column5{
+    flex-basis: 31%;
+    background: #fff3f3;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    padding: 20px 12px;
+    box-sizing: border-box;
+}
+
+.row5{
+    margin-top: 5%;
+    display: flex;
+    justify-content:center;
+    margin: auto;
+    text-align: center;
+}
+
+
+
+
 
 @media(max-width: 1024px) {
     .text-box h1 {
@@ -151,18 +218,5 @@ li{
     .toggle-close {
         color: #fff;  /* White color */
     }
-    #countdown {
-        font-size: 15px;
-        text-align: center;
-        margin-top: 50px;
-        color: #fff;
-      }
 }
 
-#countdown {
-    font-size: 24px;
-    text-align: center;
-
-    color: #fff;
-  }
-  
