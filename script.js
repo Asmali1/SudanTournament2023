@@ -39,6 +39,9 @@ function toggleSidePanel() {
 }
 
 function navigateDay(direction, data) {
+    if (countdownInterval) {
+        clearInterval(countdownInterval);  // Clear the countdown whenever navigating days.
+    }
     const prayerTimesSection = document.getElementById('prayer-times-section');
     prayerTimesSection.classList.add('fadeOut');
 
@@ -59,23 +62,36 @@ function displayPrayerTimesForDay(index, data) {
     const dateParts = day.date.readable.split(" ");
     const formattedDate = `${shortMonthToFull(dateParts[1])} ${dateParts[0]}, ${dateParts[2]}`;
     const now = new Date();
-
+    let nextPrayerTime = null;
+    let nextPrayerName = "";
+    
     for (const prayer of desiredPrayerTimes) {
         const time = convertTo12Hour(day.timings[prayer].split(' ')[0]).split(" ")[0];
         const prayerHour = parseInt(time.split(":")[0]);
         const prayerMinute = parseInt(time.split(":")[1]);
         const prayerDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), prayerHour, prayerMinute);
-        if (now < prayerDate) {
+
+        if (!nextPrayerTime && now < prayerDate) {
             nextPrayerTime = prayerDate;
             nextPrayerName = prayer;
-            break;
         }
     }
+
+    // If no prayer time found for the current day, consider Fajr of the next day
+    if (!nextPrayerTime && index + 1 < data.data.length) {
+        const tomorrow = data.data[index + 1];
+        const time = convertTo12Hour(tomorrow.timings["Fajr"].split(' ')[0]).split(" ")[0];
+        const prayerHour = parseInt(time.split(":")[0]);
+        const prayerMinute = parseInt(time.split(":")[1]);
+        nextPrayerTime = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, prayerHour, prayerMinute);
+        nextPrayerName = "Fajr";
+    }
+
     if (nextPrayerTime) {
         if (countdownInterval) {
             clearInterval(countdownInterval);  // Clear the existing countdown if any.
         }
-    
+
         countdownInterval = setInterval(() => {
             const now = new Date();
             let diff = nextPrayerTime - now;
@@ -85,9 +101,14 @@ function displayPrayerTimesForDay(index, data) {
             diff %= (1000 * 60);
             const seconds = Math.floor(diff / 1000);
             document.getElementById("prayer-countdown").innerText = `Next ${nextPrayerName}: ${formatWithLeadingZero(hours)}:${formatWithLeadingZero(minutes)}:${formatWithLeadingZero(seconds)}`;
+            
+            if (diff <= 0) {
+                // The prayer time has passed, so refresh the display.
+                displayPrayerTimesForDay(currentDayIndex, currentData);
+            }
         }, 1000);
     }
-    
+
     let timingsHtml = `<h4>${formattedDate}</h4><table>`;
     for (const prayer of desiredPrayerTimes) {
         const time = day.timings[prayer];
@@ -98,6 +119,7 @@ function displayPrayerTimesForDay(index, data) {
 
     document.getElementById('prayer-times-section').innerHTML = timingsHtml;
 }
+
 
 // --- Initialization ---
 
@@ -110,7 +132,6 @@ const currentMonth = currentDateObj.getMonth() + 1;
 const currentDate = currentDateObj.getDate();
 let currentData = null;
 let currentDayIndex;
-
 let countdownInterval; // Global declaration
 let nextPrayerTime = null;
 let nextPrayerName = "";
@@ -163,3 +184,20 @@ const countdown = setInterval(function() {
     document.getElementById("timer").innerHTML = "Countdown expired!";
   }
 }, 1000);
+
+if (!countdownInterval) {
+    countdownInterval = setInterval(() => {
+        const now = new Date();
+        if (nextPrayerTime) {
+            let diff = nextPrayerTime - now;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            diff %= (1000 * 60 * 60);
+            const minutes = Math.floor(diff / (1000 * 60));
+            diff %= (1000 * 60);
+            const seconds = Math.floor(diff / 1000);
+            document.getElementById("prayer-countdown").innerText = `Next ${nextPrayerName}: ${formatWithLeadingZero(hours)}:${formatWithLeadingZero(minutes)}:${formatWithLeadingZero(seconds)}`;
+        }
+    }, 1000);
+}
+
+document.getElementById("footerYear").textContent = new Date().getFullYear();
