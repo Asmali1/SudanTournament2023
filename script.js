@@ -71,6 +71,7 @@ function displayPrayerTimesForDay(index, data) {
         if (now < prayerDate) {
             nextPrayerTime = prayerDate;
             nextPrayerName = prayer;
+            console.log(`Next prayer is ${nextPrayerName} at ${nextPrayerTime}`); // Add this
             break;
         }
     }
@@ -113,7 +114,6 @@ const currentMonth = currentDateObj.getMonth() + 1;
 const currentDate = currentDateObj.getDate();
 let currentData = null;
 let currentDayIndex;
-
 let countdownInterval; // Global declaration
 let nextPrayerTime = null;
 let nextPrayerName = "";
@@ -129,17 +129,18 @@ fetch(apiURL)
         currentDayIndex = currentData.data.findIndex(day => day.date.readable === todayFormatted);
         displayPrayerTimesForDay(currentDayIndex, currentData);
     });
-    if (!countdownInterval) {
-        countdownInterval = setInterval(() => {
-            const now = new Date();
-            if (nextPrayerTime) {
-                let diff = nextPrayerTime - now;
-                const hours = Math.floor(diff / (1000 * 60 * 60));
-                diff %= (1000 * 60 * 60);
-                const minutes = Math.floor(diff / (1000 * 60));
-                diff %= (1000 * 60);
-                const seconds = Math.floor(diff / 1000);
-                document.getElementById("prayer-countdown").innerText = `Next ${nextPrayerName}: ${formatWithLeadingZero(hours)}:${formatWithLeadingZero(minutes)}:${formatWithLeadingZero(seconds)}`;
-            }
-        }, 1000);
-    }
+
+if (!countdownInterval) {
+    countdownInterval = setInterval(() => {
+        const now = new Date();
+        if (nextPrayerTime) {
+            let diff = nextPrayerTime - now;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            diff %= (1000 * 60 * 60);
+            const minutes = Math.floor(diff / (1000 * 60));
+            diff %= (1000 * 60);
+            const seconds = Math.floor(diff / 1000);
+            document.getElementById("prayer-countdown").innerText = `Next ${nextPrayerName}: ${formatWithLeadingZero(hours)}:${formatWithLeadingZero(minutes)}:${formatWithLeadingZero(seconds)}`;
+        }
+    }, 1000);
+}
