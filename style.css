@@ -273,7 +273,25 @@ footer {
 }
 
 
+.translate-button-container {
+    text-align: center;
+    padding-top: 20px; /* Add some top padding for space */
+}
 
+#translateBtn {
+    padding: 8px 15px; /* Decrease padding for a smaller button */
+    border: none;
+    border-radius: 15px; /* Adjust border-radius for a slightly rounder button */
+    background-color: #3498db; /* A nice shade of blue */
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px; /* Decrease font size for a smaller button */
+}
+
+#translateBtn:hover {
+    background-color: #2980b9; /* Adjust the hover color */
+}
 
 @media(max-width: 1024px) {
     

@@ -99,8 +99,12 @@ function displayPrayerTimesForDay(index, data) {
             const minutes = Math.floor(diff / (1000 * 60));
             diff %= (1000 * 60);
             const seconds = Math.floor(diff / 1000);
-            document.getElementById("prayer-countdown").innerText = `Next ${nextPrayerName}: ${formatWithLeadingZero(hours)}:${formatWithLeadingZero(minutes)}:${formatWithLeadingZero(seconds)}`;
-            
+            // const translatedNext = translations[currentLanguage]["Next"] || "Next";
+            // const translatedPrayerName = translations[currentLanguage][nextPrayerName] || nextPrayerName;
+            // document.getElementById("prayer-countdown").innerText = `${translatedNext} ${translatedPrayerName}: ${formatWithLeadingZero(hours)}:${formatWithLeadingZero(minutes)}:${formatWithLeadingZero(seconds)}`;
+            document.getElementById("prayer-countdown").innerText = `${nextPrayerName} in: ${formatWithLeadingZero(hours)}:${formatWithLeadingZero(minutes)}:${formatWithLeadingZero(seconds)}`;
+
+                        
             if (diff <= 0) {
                 // The prayer time has passed, so refresh the display.
                 displayPrayerTimesForDay(currentDayIndex, currentData);
@@ -165,3 +169,90 @@ if (!countdownInterval) {
 
 document.getElementById("footerYear").textContent = new Date().getFullYear();
 
+let currentLanguage = "en";  // initial state
+
+const translations = {
+    "en": {
+        "Fajr": "الفجر",
+        "Sunrise": "الشروق",
+        "Dhuhr": "الظهر",
+        "Asr": "العصر",
+        "Maghrib": "المغرب",
+        "Isha": "العشاء",
+        "STSS ANNUAL TOURNAMENT": "بطولة ستس السنوية",
+        "Welcome to the Ohio Sudanese American Soccer Federation Webpage.": "مرحبًا بك في صفحة الاتحاد السوداني الأمريكي لكرة القدم في أوهايو.",
+        "Visit us to know more": "زورونا لمعرفة المزيد",
+        "Prayer Times": "أوقات الصلاة",
+        "Previous": "السابق",
+        "Next": "التالي",
+        "MAP": "الخريطة",
+        "FIELDS": "الملاعب",
+        "SCHEDULE": "الجدول",
+        "GALLERY": "الصور",
+        "ABOUT US": "عنا"
+    },
+    "ar": {
+        "الفجر": "Fajr",
+        "الشروق": "Sunrise",
+        "الظهر": "Dhuhr",
+        "العصر": "Asr",
+        "المغرب": "Maghrib",
+        "العشاء": "Isha",
+        "بطولة ستس السنوية": "STSS ANNUAL TOURNAMENT",
+        "مرحبًا بك في صفحة الاتحاد السوداني الأمريكي لكرة القدم في أوهايو.": "Welcome to the Ohio Sudanese American Soccer Federation Webpage.",
+        "زورونا لمعرفة المزيد": "Visit us to know more",
+        "أوقات الصلاة": "Prayer Times",
+        "السابق": "Previous",
+        "التالي": "Next",
+        "الخريطة": "MAP",
+        "الملاعب": "FIELDS",
+        "الجدول": "SCHEDULE",
+        "الصور": "GALLERY",
+        "عنا": "ABOUT US"
+    }
+};
+
+function translateContent() {
+    const langMap = translations[currentLanguage];
+
+    // Translate nav links
+    const navLinks = document.querySelectorAll('.nav-links ul li a');
+    navLinks.forEach(link => {
+        link.textContent = langMap[link.textContent] || link.textContent;
+    });
+
+    // Translate header content
+    document.querySelector('.text-box h1').textContent = langMap[document.querySelector('.text-box h1').textContent] || document.querySelector('.text-box h1').textContent;
+    document.querySelector('.text-box p').textContent = langMap[document.querySelector('.text-box p').textContent] || document.querySelector('.text-box p').textContent;
+    document.querySelector('.hero-btn').textContent = langMap[document.querySelector('.hero-btn').textContent] || document.querySelector('.hero-btn').textContent;
+
+    // Translate Prayer Times heading
+    const prayerTimesTitle = document.querySelector('.prayer-times-content h1 span');
+    prayerTimesTitle.textContent = langMap[prayerTimesTitle.textContent] || prayerTimesTitle.textContent;
+
+    // Translate the prayer times table content
+    const prayerTimesTable = document.querySelector('#prayer-times-section table');
+    if (prayerTimesTable) {
+        const rows = prayerTimesTable.querySelectorAll('tr');
+        rows.forEach(row => {
+            const cells = row.querySelectorAll('td');
+            if (cells && cells.length > 0) {
+                cells[0].textContent = langMap[cells[0].textContent.replace(':', '')] + ":";
+            }
+        });
+    }
+
+document.getElementById('translateBtn').addEventListener('click', translateContent);
+
+    // Translate navigation buttons
+    const navButtons = document.querySelectorAll('.navigation-buttons button');
+    navButtons.forEach(button => {
+        button.textContent = langMap[button.textContent] || button.textContent;
+    });
+
+    // Toggle language for next call
+    currentLanguage = currentLanguage === "en" ? "ar" : "en";
+}
+
+
+document.getElementById('translateBtn').addEventListener('click', translateContent);

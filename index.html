@@ -13,7 +13,11 @@
 </head>
 
 <body>
+
     <section class="header">
+        <div class="translate-button-container">
+            <button id="translateBtn">Translate Page</button>
+        </div>
         <nav>
             <a href="index.html"><img src="images/Logo2.png" alt="SASF Ohio Logo"></a>
             <i class="fas fa-bars fa-2x" id="openSidePanel"></i>
@@ -29,7 +33,9 @@
             </div>
             
         </nav>
+        
         <div class="text-box">
+
             <h1>STSS ANNUAL TOURNAMENT</h1>
             <p>Welcome to the Ohio Sudanese American Soccer Federation Webpage.</p>
             <a href="#" class="hero-btn">Visit us to know more</a>
@@ -44,8 +50,9 @@
         <div class="prayer-times-content">
             <h1>
                 <img src="images/islamic.png" alt="Prayer Icon" width="45" height="45">
-                Prayer Times
+                <span data-translatable="أوقات الصلاة" data-default="Prayer Times">Prayer Times</span>
             </h1>
+            
             <span id="prayer-countdown">00:00:00</span>  <!-- Timer is moved below the heading -->
             <div id="prayer-times-section">
                 <!-- This section will be populated with prayer times from the script -->
