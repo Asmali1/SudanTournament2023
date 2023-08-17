@@ -66,9 +66,8 @@ function displayPrayerTimesForDay(index, data) {
     let nextPrayerName = "";
     
     for (const prayer of desiredPrayerTimes) {
-        const time = convertTo12Hour(day.timings[prayer].split(' ')[0]).split(" ")[0];
-        const prayerHour = parseInt(time.split(":")[0]);
-        const prayerMinute = parseInt(time.split(":")[1]);
+        const time = day.timings[prayer].split(' ')[0]; // Get the time without conversion
+        const [prayerHour, prayerMinute] = time.split(":").map(num => parseInt(num, 10));
         const prayerDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), prayerHour, prayerMinute);
 
         if (!nextPrayerTime && now < prayerDate) {
@@ -117,6 +116,7 @@ function displayPrayerTimesForDay(index, data) {
     }
     timingsHtml += "</table>";
 
+
     document.getElementById('prayer-times-section').innerHTML = timingsHtml;
 }
 
@@ -164,3 +164,4 @@ if (!countdownInterval) {
 }
 
 document.getElementById("footerYear").textContent = new Date().getFullYear();
+
