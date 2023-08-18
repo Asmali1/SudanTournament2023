@@ -5,7 +5,17 @@
 function formatWithLeadingZero(number) {
     return number < 10 ? '0' + number : number;
 }
-
+function redirectToYelp() {
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            let latitude = position.coords.latitude;
+            let longitude = position.coords.longitude;
+            window.location.href = `https://www.yelp.com/search?find_desc=Halal&find_loc=${latitude},${longitude}`;
+        });
+    } else {
+        alert("Geolocation is not supported by your browser.");
+    }
+}
 // Convert 24-hour format to 12-hour format with EDT
 // Convert 24-hour format to 12-hour format with EST
 function convertTo12Hour(time) {
@@ -186,11 +196,13 @@ const translations = {
         "Prayer Times": "أوقات الصلاة",
         "Previous": "السابق",
         "Next": "التالي",
-        "MAP": "الخريطة",
-        "FIELDS": "الملاعب",
+        "MAP & FIELDS":"الخريطة والحقول",
+        // "MAP": "الخريطة",
+        // "FIELDS": "الملاعب",
         "SCHEDULE": "الجدول",
         "GALLERY": "الصور",
-        "ABOUT US": "عنا"
+        "ABOUT US": "عنا",
+        "HALAL FOOD": "طعام حلال"
     },
     "ar": {
         "الفجر": "Fajr",
@@ -205,11 +217,13 @@ const translations = {
         "أوقات الصلاة": "Prayer Times",
         "السابق": "Previous",
         "التالي": "Next",
-        "الخريطة": "MAP",
-        "الملاعب": "FIELDS",
+        "الخريطة والحقول":"MAP & FIELDS",
+        // "الخريطة": "MAP",
+        // "الملاعب": "FIELDS",
         "الجدول": "SCHEDULE",
         "الصور": "GALLERY",
-        "عنا": "ABOUT US"
+        "عنا": "ABOUT US",
+        "طعام حلال":"HALAL FOOD"
     }
 };
 
@@ -243,7 +257,6 @@ function translateContent() {
         });
     }
 
-document.getElementById('translateBtn').addEventListener('click', translateContent);
 
     // Translate navigation buttons
     const navButtons = document.querySelectorAll('.navigation-buttons button');
