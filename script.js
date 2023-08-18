@@ -5,17 +5,29 @@
 function formatWithLeadingZero(number) {
     return number < 10 ? '0' + number : number;
 }
+
 function redirectToYelp() {
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(function(position) {
             let latitude = position.coords.latitude;
             let longitude = position.coords.longitude;
             window.location.href = `https://www.yelp.com/search?find_desc=Halal&find_loc=${latitude},${longitude}`;
+        }, function(error) {
+            // Geolocation failed for some reason, use default address
+            redirectToDefaultAddress();
         });
     } else {
-        alert("Geolocation is not supported by your browser.");
+        // Geolocation not supported, use default address
+        redirectToDefaultAddress();
     }
 }
+
+function redirectToDefaultAddress() {
+    const defaultAddress = "6490 Dublin Park Drive";
+    window.location.href = `https://www.yelp.com/search?find_desc=Halal&find_loc=${encodeURIComponent(defaultAddress)}`;
+}
+
+
 // Convert 24-hour format to 12-hour format with EDT
 // Convert 24-hour format to 12-hour format with EST
 function convertTo12Hour(time) {
