@@ -1,4 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
 
 // --- Utility Functions ---
 
@@ -258,5 +257,4 @@ document.getElementById('translateBtn').addEventListener('click', translateConte
 
 
 document.getElementById('translateBtn').addEventListener('click', translateContent);
-});
 
