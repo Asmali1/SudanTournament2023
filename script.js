@@ -1,5 +1,12 @@
 
 // --- Utility Functions ---
+document.addEventListener("DOMContentLoaded", function(event) {
+    translateContent();
+});
+document.getElementById("languageChangeButton").addEventListener("click", function() {
+    currentLanguage = currentLanguage === "en" ? "ar" : "en"; // Toggle between English and Arabic
+    translateContent();
+});
 
 // Utility function to format a single digit number with a leading zero
 function formatWithLeadingZero(number) {
@@ -73,6 +80,8 @@ function navigateDay(direction, data) {
         document.getElementById('prev-day').style.display = currentDayIndex === 0 ? 'none' : 'inline-block';
         document.getElementById('next-day').style.display = currentDayIndex === 29 ? 'none' : 'inline-block';  // Assuming a max of 30 days
         displayPrayerTimesForDay(currentDayIndex, data);
+        translateContent();  // <- Add this line
+
         prayerTimesSection.classList.remove('fadeOut').classList.add('fadeIn');
         setTimeout(() => {
             prayerTimesSection.classList.remove('fadeIn');
@@ -122,10 +131,10 @@ function displayPrayerTimesForDay(index, data) {
             const minutes = Math.floor(diff / (1000 * 60));
             diff %= (1000 * 60);
             const seconds = Math.floor(diff / 1000);
-            // const translatedNext = translations[currentLanguage]["Next"] || "Next";
-            // const translatedPrayerName = translations[currentLanguage][nextPrayerName] || nextPrayerName;
-            // document.getElementById("prayer-countdown").innerText = `${translatedNext} ${translatedPrayerName}: ${formatWithLeadingZero(hours)}:${formatWithLeadingZero(minutes)}:${formatWithLeadingZero(seconds)}`;
-            document.getElementById("prayer-countdown").innerText = `${nextPrayerName} in: ${formatWithLeadingZero(hours)}:${formatWithLeadingZero(minutes)}:${formatWithLeadingZero(seconds)}`;
+            const translatedNext = translations[currentLanguage]["Next"] || "Next";
+            const translatedPrayerName = translations[currentLanguage][nextPrayerName] || nextPrayerName;
+            document.getElementById("prayer-countdown").innerText = `${translatedNext} ${translatedPrayerName}: ${formatWithLeadingZero(hours)}:${formatWithLeadingZero(minutes)}:${formatWithLeadingZero(seconds)}`;
+            // document.getElementById("prayer-countdown").innerText = `${nextPrayerName} in: ${formatWithLeadingZero(hours)}:${formatWithLeadingZero(minutes)}:${formatWithLeadingZero(seconds)}`;
 
                         
             if (diff <= 0) {
@@ -145,6 +154,8 @@ function displayPrayerTimesForDay(index, data) {
 
 
     document.getElementById('prayer-times-section').innerHTML = timingsHtml;
+    translateContent();  // Translate the content after updating
+
 }
 
 
@@ -245,8 +256,9 @@ function translateContent() {
     // Translate nav links
     const navLinks = document.querySelectorAll('.nav-links ul li a');
     navLinks.forEach(link => {
-        link.textContent = langMap[link.textContent] || link.textContent;
+        link.textContent = langMap[link.textContent.trim()] || link.textContent;
     });
+
 
     // Translate header content
     document.querySelector('.text-box h1').textContent = langMap[document.querySelector('.text-box h1').textContent] || document.querySelector('.text-box h1').textContent;
@@ -264,7 +276,10 @@ function translateContent() {
         rows.forEach(row => {
             const cells = row.querySelectorAll('td');
             if (cells && cells.length > 0) {
-                cells[0].textContent = langMap[cells[0].textContent.replace(':', '')] + ":";
+                const prayerTranslation = langMap[cells[0].textContent.replace(':', '').trim()];
+                if (prayerTranslation) { // Check if translation exists
+                    cells[0].textContent = prayerTranslation + ":";
+                }
             }
         });
     }
