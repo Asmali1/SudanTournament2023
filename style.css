@@ -183,7 +183,7 @@ nav img {
     width: 100%;
     color: #fff;
     position: absolute;
-    top: 33%;           /* Moved the box higher */
+    top: 28%;           /* Moved the box higher */
     left: 50%;
     bottom: 20vh;          
     transform: translateX(-50%); 
@@ -191,12 +191,12 @@ nav img {
 }
 
 .text-box h1 {
-    font-size: 62px;
+    font-size: 55px;
 }
 
 .text-box p {
     margin: 10px 0 40px;
-    font-size: 14px;
+    font-size: 25px;
     color: #fff;
 }
 
@@ -206,7 +206,7 @@ nav img {
     color: #fff;
     border: 1px solid #fff;
     padding: 12px 34px;
-    font-size: 13px;
+    font-size: 12px;
     background: transparent;
     position: relative;
     cursor: pointer;
@@ -280,27 +280,43 @@ footer {
 }
 
 #translateBtn {
-    padding: 8px 15px; /* Decrease padding for a smaller button */
+    padding: 15px 30px; /* Increased padding for a larger button */
     border: none;
-    border-radius: 15px; /* Adjust border-radius for a slightly rounder button */
-    background-color: #3498db; /* A nice shade of blue */
+    border-radius: 20px; /* Adjusted border-radius for a proportionate look */
+    background-color: #3498db; 
     color: #fff;
     cursor: pointer;
     transition: background-color 0.3s;
-    font-size: 14px; /* Decrease font size for a smaller button */
+    font-size: 18px; /* Increased font size for a larger button */
 }
+
 
 #translateBtn:hover {
     background-color: #2980b9; /* Adjust the hover color */
 }
 iframe {
-    width: 100%;  /* This will set the iframe to the full width of its container */
-    height: 56.25vw; /* This maintains the 16:9 aspect ratio based on the width. */
+    width: 100%; /* This will set the iframe to the full width of its container */
+    height: 60vh; /* This will make the height to be 60% of the viewport height */
+    max-height: 100%; /* This ensures that the iframe never grows beyond its container */
+    border: none; /* Removes any default border that the iframe might have */
+    overflow: hidden; /* Ensures no scrollbar appears within the iframe */
 }
 
-
 @media(max-width: 1024px) {
-    
+    .text-box {
+        width: 100%;
+        color: #fff;
+        position: absolute;
+        top: 33%;           /* Moved the box higher */
+        left: 50%;
+        bottom: 20vh;          
+        transform: translateX(-50%); 
+        text-align: center;
+    }
+    iframe {
+        width: 100%;  /* This will set the iframe to the full width of its container */
+        height: 56.25vw; /* This maintains the 16:9 aspect ratio based on the width. */
+    }
     .text-box h1 {
         font-size: 28px;
     }
@@ -369,23 +385,56 @@ iframe {
     .toggle-close {
         color: #fff;  /* White color */
     }
+    #translateBtn {
+        padding: 8px 15px; /* Decrease padding for a smaller button */
+        border: none;
+        border-radius: 15px; /* Adjust border-radius for a slightly rounder button */
+        background-color: #3498db; /* A nice shade of blue */
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-size: 14px; /* Decrease font size for a smaller button */
+    }
+    .hero-btn{
+        font-size: 13px;
+    }
     
 }
 @media(min-width: 1025px) {
+
     #openSidePanel {
         display: none;
     }
     .nav-links {
         display: block !important;
     }
-    
+    /* .hero-btn{
+        font-size: 13px;
+    } */
 }
 @media (min-width: 768px) and (max-width: 1024px) {
+    .text-box {
+        width: 100%;
+        color: #fff;
+        position: absolute;
+        top: 33%;           /* Moved the box higher */
+        left: 50%;
+        bottom: 20vh;          
+        transform: translateX(-50%); 
+        text-align: center;
+    }
     .text-box h1 {
         font-size: 48px; /* Adjust this value based on your preference */
     }
 
     .text-box p {
         font-size: 18px; /* Adjust this value based on your preference */
+    }
+    iframe {
+        width: 100%;  /* This will set the iframe to the full width of its container */
+        height: 56.25vw; /* This maintains the 16:9 aspect ratio based on the width. */
+    }
+    .hero-btn{
+        font-size: 13px;
     }
 }
