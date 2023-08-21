@@ -1,7 +1,4 @@
 // Utility function to format a single digit number with a leading zero
-document.addEventListener("DOMContentLoaded", function(event) {
-    translateContent();
-});
 function formatWithLeadingZero(number) {
     return number < 10 ? '0' + number : number;
 }
@@ -200,7 +197,7 @@ if (!countdownInterval) {
 
 document.getElementById("footerYear").textContent = new Date().getFullYear();
 
-let currentLanguage = "en";  // initial state
+let currentLanguage = "ar";  // initial state
 const translations_prayer = {
     "en": {
         "Fajr": "Fajr",
