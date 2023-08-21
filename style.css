@@ -183,7 +183,7 @@ nav img {
     width: 100%;
     color: #fff;
     position: absolute;
-    top: 36%;           /* Moved the box higher */
+    top: 33%;           /* Moved the box higher */
     left: 50%;
     bottom: 20vh;          
     transform: translateX(-50%); 
@@ -308,7 +308,7 @@ iframe {
         display: block;
     }
     .text-box p{
-        font-size: 16px;
+        font-size: 20px;
     }
 
     /* Hide the close button inside the side panel by default */
