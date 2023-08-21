@@ -183,9 +183,10 @@ nav img {
     width: 100%;
     color: #fff;
     position: absolute;
-    top: 50%;
+    top: 36%;           /* Moved the box higher */
     left: 50%;
-    transform: translate(-50%, 50%);
+    bottom: 20vh;          
+    transform: translateX(-50%); 
     text-align: center;
 }
 
@@ -292,14 +293,22 @@ footer {
 #translateBtn:hover {
     background-color: #2980b9; /* Adjust the hover color */
 }
+iframe {
+    width: 100%;  /* This will set the iframe to the full width of its container */
+    height: 56.25vw; /* This maintains the 16:9 aspect ratio based on the width. */
+}
+
 
 @media(max-width: 1024px) {
     
     .text-box h1 {
-        font-size: 20px;
+        font-size: 28px;
     }
     #openSidePanel {
         display: block;
+    }
+    .text-box p{
+        font-size: 16px;
     }
 
     /* Hide the close button inside the side panel by default */
@@ -322,7 +331,7 @@ footer {
     .nav-links ul li a {
         color: #fff;
         text-decoration: none;
-        font-size: 13px;
+        /* font-size: 13px; */
         display: block;   /* Make the link fill the entire width of the list item */
         padding: 4px 8px; /* Some padding for better touch targets */
         font-size: 16px;
@@ -370,4 +379,13 @@ footer {
         display: block !important;
     }
     
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .text-box h1 {
+        font-size: 48px; /* Adjust this value based on your preference */
+    }
+
+    .text-box p {
+        font-size: 18px; /* Adjust this value based on your preference */
+    }
 }
