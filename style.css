@@ -322,6 +322,11 @@ iframe {
     }
     #openSidePanel {
         display: block;
+        color: white;
+        cursor: pointer
+    }
+    #openSidePanel:hover {
+        color: #ddd;  /* This is a slightly darker shade of white for hover effect */
     }
     .text-box p{
         font-size: 20px;
