@@ -79,37 +79,31 @@ ol{
     text-align: center;
 }
 
-li{
+li {
     list-style-type:disc;
-    font-size: 30px;
+    font-size: 50px;
     text-align: center;
-    background-color: aqua;
 }
 
 h1{
     text-align: center;
-    font-size: 50px;
-    color: #fff;
+    font-size: 70px;
+    color: #73a4c9;
 }
 
 p{
     font-size: 20px;
 }
 
-
-
-.row1{
-    margin-top: 5%;
-    display: flex;
-    justify-content: space-between;
-    margin: auto;
-    text-align: center;
-    color: #fff;
+h2{
+    color: #73a4c9;
 }
 
-.list-col{
+.column1{
     flex-basis: 31%;
     border-radius: 10px;
+    background-color: none;
+    border-style: solid;
     margin-bottom: 5%;
     padding: 20px 12px;
     box-sizing: border-box;
@@ -119,9 +113,64 @@ p{
 .column2{
     flex-basis: 31%;
     border-radius: 10px;
+    background-color: none;
+    border-style: solid;
     margin-bottom: 5%;
     padding: 20px 12px;
     box-sizing: border-box;
+    color: #fff;
+}
+
+.column3{
+    flex-basis: 31%;
+    border-radius: 10px;
+    background-color: none;
+    border-style: solid;
+    margin-bottom: 5%;
+    padding: 20px 12px;
+    box-sizing: border-box;
+    color: #fff;
+}
+
+.column4{
+    flex-basis: 31%;
+    border-radius: 10px;
+    background-color: none;
+    border-style: solid;
+    margin-bottom: 5%;
+    padding: 20px 12px;
+    box-sizing: border-box;
+    color: #fff;
+}
+
+.column5{
+    flex-basis: 31%;
+    border-radius: 10px;
+    background-color: none;
+    border-style: solid;
+    margin-bottom: 5%;
+    padding: 20px 12px;
+    box-sizing: border-box;
+    color: #fff;
+}
+
+.column6{
+    flex-basis: 31%;
+    border-radius: 10px;
+    background-color: none;
+    border-style: solid;
+    margin-bottom: 5%;
+    padding: 20px 12px;
+    box-sizing: border-box;
+    color: #fff;
+}
+
+.row1{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    text-align: center;
     color: #fff;
 }
 
@@ -133,16 +182,31 @@ p{
     text-align: center;
 }
 
-.column5{
-    flex-basis: 31%;
-    border-radius: 10px;
-    margin-bottom: 5%;
-    padding: 20px 12px;
-    box-sizing: border-box;
-    color: #fff;
+.row3{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    text-align: center;
+}
+
+.row4{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    text-align: center;
 }
 
 .row5{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    text-align: center;
+}
+
+.row6{
     margin-top: 5%;
     display: flex;
     justify-content:center;

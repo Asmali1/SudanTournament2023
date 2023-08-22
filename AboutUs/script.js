@@ -11,3 +11,6 @@
         toggleIcon.classList.replace('fas fa-times fa-2x', 'fas fa-bars fa-2x');
     }
 }
+
+document.getElementById('openSidePanel').addEventListener('click', toggleSidePanel);
+document.getElementById('toggleBtn').addEventListener('click', toggleSidePanel);
