@@ -21,20 +21,19 @@ nav img {
 .nav-links {
     flex: 1;
     text-align: right;
-    display: none;  /* By default, the nav-links are hidden */
 }
 
 .nav-links ul li {
     list-style: none;
     display: inline-block;
-    padding: 8px 12px;
+    padding: 8px 20px;  /* increased right and left padding */
     position:relative;
 }
 
 .nav-links ul li a {
     color: #fff;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 20px;
 }
 
 .nav-links ul li::after {
@@ -214,24 +213,28 @@ h2{
     text-align: center;
 }
 
+.toggle-close {
+    display: none;
+}
 
-
-
+#openSidePanel {
+    display: none;
+}
 
 @media(max-width: 1024px) {
-    .text-box h1 {
-        font-size: 20px;
-    }
     #openSidePanel {
         display: block;
     }
+    .text-box h1 {
+        font-size: 20px;
+    }
+
 
     /* Hide the close button inside the side panel by default */
     .toggle-close {
-        display: none;
+        color: #fff;  /* White color */
     }
 
-    /* Show the close button when the side panel is open */
     .nav-links[style*="display: block"] .toggle-close {
         display: block;
     }
@@ -246,7 +249,7 @@ h2{
     .nav-links ul li a {
         color: #fff;
         text-decoration: none;
-        font-size: 13px;
+        /* font-size: 13px; */
         display: block;   /* Make the link fill the entire width of the list item */
         padding: 4px 8px; /* Some padding for better touch targets */
         font-size: 16px;
@@ -267,6 +270,8 @@ h2{
         overflow-y: auto;
     }
     
+    
+
     nav .fa {
         display: block;
         position: absolute;
@@ -281,6 +286,19 @@ h2{
     }
     .toggle-close {
         color: #fff;  /* White color */
+    }
+    #translateBtn {
+        padding: 8px 15px; /* Decrease padding for a smaller button */
+        border: none;
+        border-radius: 15px; /* Adjust border-radius for a slightly rounder button */
+        background-color: #3498db; /* A nice shade of blue */
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-size: 14px; /* Decrease font size for a smaller button */
+    }
+    .hero-btn{
+        font-size: 13px;
     }
 
     h1{
