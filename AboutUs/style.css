@@ -203,8 +203,6 @@ p{
         overflow-y: auto;
     }
     
-    
-
     nav .fa {
         display: block;
         position: absolute;
@@ -221,12 +219,6 @@ p{
         color: #fff;  /* White color */
     }
 
-  
-    
-
-
-
-
     h1{
         text-align: center;
         font-size: 30px;
@@ -242,21 +234,13 @@ p{
         color: #73a4c9;
     }
     
-    
-    .row1{
-        margin-top: 5%;
-        display: flex;
-        justify-content: space-between;
-        margin: auto;
-        text-align: center;
-        color: #fff;
-    }
-    
-    .list-col{
+    .column1{
         flex-basis: 31%;
-        border-radius: 10px;
+        border-radius: 5px;
+        background-color: none;
+        border-style: solid;
         margin-bottom: 5%;
-        padding: 20px;
+        padding: 20px 1px;
         box-sizing: border-box;
         color: #fff;
     }
@@ -264,12 +248,66 @@ p{
     .column2{
         flex-basis: 31%;
         border-radius: 10px;
+        background-color: none;
+        border-style: solid;
+        margin-bottom: 5%;
+        padding: 20px 2px;
+        box-sizing: border-box;
+        color: #fff;
+    }
+
+    .column3{
+        flex-basis: 31%;
+        border-radius: 5px;
+        background-color: none;
+        border-style: solid;
+        margin-bottom: 5%;
+        padding: 20px 2px;
+        box-sizing: border-box;
+        color: #fff;
+    }
+
+    .column4{
+        flex-basis: 31%;
+        border-radius: 5px;
+        background-color: none;
+        border-style: solid;
+        margin-bottom: 5%;
+        padding: 20px 1px;
+        box-sizing: border-box;
+        color: #fff;
+    }
+
+    .column5{
+        flex-basis: 31%;
+        border-radius: 5px;
+        background-color: none;
+        border-style: solid;
+        margin-bottom: 5%;
+        padding: 20px 12px;
+        box-sizing: border-box;
+        color: #fff;
+    }
+
+    .column6{
+        flex-basis: 31%;
+        border-radius: 10px;
+        background-color: none;
+        border-style: solid;
         margin-bottom: 5%;
         padding: 20px 12px;
         box-sizing: border-box;
         color: #fff;
     }
     
+    .row1{
+        margin-top: 5%;
+        display: flex;
+        justify-content: space-between;
+        margin: auto;
+        text-align: center;
+    }
+
     .row2{
         margin-top: 5%;
         display: flex;
@@ -278,24 +316,36 @@ p{
         text-align: center;
     }
     
-    .column5{
-        flex-basis: 31%;
-        border-radius: 10px;
-        
-        margin-bottom: 5%;
-        padding: 20px 12px;
-        box-sizing: border-box;
-        color: #fff;
+    .row3{
+        margin-top: 5%;
+        display: flex;
+        justify-content: space-between;
+        margin: auto;
+        text-align: center;
+    }
+
+    .row4{
+        margin-top: 5%;
+        display: flex;
+        justify-content: space-between;
+        margin: auto;
+        text-align: center;
+    }
+
+    .row5{
+        margin-top: 5%;
+        display: flex;
+        justify-content: space-between;
+        margin: auto;
+        text-align: center;
     }
     
-    .row5{
+    .row6{
         margin-top: 5%;
         display: flex;
         justify-content:center;
         margin: auto;
         text-align: center;
-    
     }
-    
 }
 
