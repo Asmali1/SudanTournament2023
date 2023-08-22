@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SST OHIO</title>
     <link rel="stylesheet" href="style.css">
@@ -13,25 +14,48 @@
 </head>
 
 <body>
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> origin/Embedding-Tourney-Ad
     <section class="header">
+        <div class="translate-button-container">
+            <button id="translateBtn">Translate Page</button>
+        </div>
         <nav>
             <a href="index.html"><img src="images/Ohio.png" alt="SST Ohio Logo"></a>
             <i class="fas fa-bars fa-2x" id="openSidePanel"></i>
             <div class="nav-links" id="sidePanel">
                 <ul>
+<<<<<<< HEAD
                     <li><a href="#">HOME</a></li>
                     <li><a href="/Gallery/Gallery.html">GALLERY (COMING SOON)</a></li>
                     <li><a href="/AboutUs/aboutus.html">ABOUT US</a></li>
                     <li><a href="images/Map.png">MAP</a></li>
                     <li><a href="images/Fields.png">FIELDS</a></li>
                     <li><a href="bracket/schedule.html">SCHEDULE</a></li>
+=======
+                    <li><a href="bracket/schedule.html">SCHEDULE</a></li>
+                    <li><a href="images/map_and_fields.jpg">MAP & FIELDS</a></li>
+                    <li><a href="https://photos.google.com/share/AF1QipPG_IPU-Pyt73fj5DsDJPPkvG2LdcmCHBxp7FOJcKnyfxcuvHlC9LR-LX4EuKmW4A?pli=1&key=bnpDbnpiZ0R4enR3ZVp4dXI5S1k0Q19GRE9XZVh3">GALLERY</a></li>
+                    <li><a href="#">ABOUT US</a></li>
+                    <li><a href="#" onclick="redirectToYelp()">HALAL FOOD</a></li>
+>>>>>>> origin/Embedding-Tourney-Ad
                 </ul>
                 <i class="fa fa-bars fa-2x toggle-close" id="toggleBtn"></i>
             </div>
         </nav>
+        
         <div class="text-box">
+<<<<<<< HEAD
             <h1>SST ANNUAL TOURNAMENT</h1>
+=======
+
+            <h1>STSS ANNUAL TOURNAMENT</h1>
+            <iframe src="https://www.youtube.com/embed/-IIYOiJ_KRY?si=-qC1NEvoxIAhQ-NS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+>>>>>>> origin/Embedding-Tourney-Ad
             <p>Welcome to the Ohio Sudanese American Soccer Federation Webpage.</p>
             <a href="#" class="hero-btn">Visit us to know more</a>
             <div id="countdown">Countdown: <span id="timer"></span></div>
@@ -46,8 +70,9 @@
         <div class="prayer-times-content">
             <h1>
                 <img src="images/islamic.png" alt="Prayer Icon" width="45" height="45">
-                Prayer Times
+                <span data-translatable="أوقات الصلاة" data-default="Prayer Times">Prayer Times</span>
             </h1>
+            
             <span id="prayer-countdown">00:00:00</span>  <!-- Timer is moved below the heading -->
             <div id="prayer-times-section">
                 <!-- This section will be populated with prayer times from the script -->
@@ -57,9 +82,22 @@
 
     
 
-    <footer >
-        <p>&copy; <span id="footerYear"></span> Ahmed AbdelWahab and Mohamed Asmali. All Rights Reserved.</p>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 
+                <span id="footerYear"></span> 
+                <a href="https://www.instagram.com/_.9870/" target="_blank" class="social-link">
+                    <i class="fab fa-instagram fa-lg"></i> Ahmed AbdelWahab
+                </a> 
+                and 
+                <a href="https://www.instagram.com/asmaliii/" target="_blank" class="social-link">
+                    <i class="fab fa-instagram fa-lg"></i> Mohamed Asmali
+                </a>
+            </p>
+        </div>
     </footer>
+    
+    
     <script src="script.js"></script>
 
 </body>

@@ -1,9 +1,29 @@
-// --- Utility Functions ---
-
 // Utility function to format a single digit number with a leading zero
 function formatWithLeadingZero(number) {
     return number < 10 ? '0' + number : number;
 }
+
+function redirectToYelp() {
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            let latitude = position.coords.latitude;
+            let longitude = position.coords.longitude;
+            window.location.href = `https://www.yelp.com/search?find_desc=Halal&find_loc=${latitude},${longitude}`;
+        }, function(error) {
+            // Geolocation failed for some reason, use default address
+            redirectToDefaultAddress();
+        });
+    } else {
+        // Geolocation not supported, use default address
+        redirectToDefaultAddress();
+    }
+}
+
+function redirectToDefaultAddress() {
+    const defaultAddress = "6490 Dublin Park Drive";
+    window.location.href = `https://www.yelp.com/search?find_desc=Halal&find_loc=${encodeURIComponent(defaultAddress)}`;
+}
+
 
 // Convert 24-hour format to 12-hour format with EDT
 // Convert 24-hour format to 12-hour format with EST
@@ -50,6 +70,8 @@ function navigateDay(direction, data) {
         document.getElementById('prev-day').style.display = currentDayIndex === 0 ? 'none' : 'inline-block';
         document.getElementById('next-day').style.display = currentDayIndex === 29 ? 'none' : 'inline-block';  // Assuming a max of 30 days
         displayPrayerTimesForDay(currentDayIndex, data);
+        translateContent();  // <- Add this line
+
         prayerTimesSection.classList.remove('fadeOut').classList.add('fadeIn');
         setTimeout(() => {
             prayerTimesSection.classList.remove('fadeIn');
@@ -66,9 +88,8 @@ function displayPrayerTimesForDay(index, data) {
     let nextPrayerName = "";
     
     for (const prayer of desiredPrayerTimes) {
-        const time = convertTo12Hour(day.timings[prayer].split(' ')[0]).split(" ")[0];
-        const prayerHour = parseInt(time.split(":")[0]);
-        const prayerMinute = parseInt(time.split(":")[1]);
+        const time = day.timings[prayer].split(' ')[0]; // Get the time without conversion
+        const [prayerHour, prayerMinute] = time.split(":").map(num => parseInt(num, 10));
         const prayerDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), prayerHour, prayerMinute);
 
         if (!nextPrayerTime && now < prayerDate) {
@@ -100,8 +121,16 @@ function displayPrayerTimesForDay(index, data) {
             const minutes = Math.floor(diff / (1000 * 60));
             diff %= (1000 * 60);
             const seconds = Math.floor(diff / 1000);
-            document.getElementById("prayer-countdown").innerText = `Next ${nextPrayerName}: ${formatWithLeadingZero(hours)}:${formatWithLeadingZero(minutes)}:${formatWithLeadingZero(seconds)}`;
-            
+            // if(currentLanguage == 'ar'){
+            //     currentLanguage = "en"
+            // } else{
+            //     currentLanguage = 'ar'
+            // }
+            const translatedNext = translations_prayer[currentLanguage]["Next"] || "Next";
+            const translatedPrayerName = translations_prayer[currentLanguage][nextPrayerName] || nextPrayerName;
+            document.getElementById("prayer-countdown").innerText = `${translatedNext} ${translatedPrayerName}: ${formatWithLeadingZero(hours)}:${formatWithLeadingZero(minutes)}:${formatWithLeadingZero(seconds)}`;
+            // document.getElementById("prayer-countdown").innerText = `${nextPrayerName} in: ${formatWithLeadingZero(hours)}:${formatWithLeadingZero(minutes)}:${formatWithLeadingZero(seconds)}`;
+                        
             if (diff <= 0) {
                 // The prayer time has passed, so refresh the display.
                 displayPrayerTimesForDay(currentDayIndex, currentData);
@@ -117,7 +146,10 @@ function displayPrayerTimesForDay(index, data) {
     }
     timingsHtml += "</table>";
 
+
     document.getElementById('prayer-times-section').innerHTML = timingsHtml;
+    translateContent();  // Translate the content after updating
+
 }
 
 
@@ -201,3 +233,138 @@ if (!countdownInterval) {
 }
 
 document.getElementById("footerYear").textContent = new Date().getFullYear();
+
+let currentLanguage = "ar";  // initial state
+const translations_prayer = {
+    "en": {
+        "Fajr": "Fajr",
+        "Sunrise": "Sunrise",
+        "Dhuhr": "Dhuhr",
+        "Asr": "Asr",
+        "Maghrib": "Maghrib",
+        "Isha": "Isha",
+        "STSS ANNUAL TOURNAMENT": "STSS ANNUAL TOURNAMENT",
+        "Welcome to the Ohio Sudanese American Soccer Federation Webpage.": "Welcome to the Ohio Sudanese American Soccer Federation Webpage.",
+        "Visit us to know more": "Visit us to know more",
+        "Prayer Times": "Prayer Times",
+        "Previous": "Previous",
+        "Next": "Next",
+        "MAP & FIELDS":"MAP & FIELDS",
+        "SCHEDULE": "SCHEDULE",
+        "GALLERY": "GALLERY",
+        "ABOUT US": "ABOUT US",
+        "HALAL FOOD": "HALAL FOOD"
+    },
+    "ar": {
+        "Fajr": "الفجر",
+        "Sunrise": "الشروق",
+        "Dhuhr": "الظهر",
+        "Asr": "العصر",
+        "Maghrib": "المغرب",
+        "Isha": "العشاء",
+        "STSS ANNUAL TOURNAMENT": "بطولة ستس السنوية",
+        "Welcome to the Ohio Sudanese American Soccer Federation Webpage.": "مرحبًا بك في صفحة الاتحاد السوداني الأمريكي لكرة القدم في أوهايو.",
+        "Visit us to know more": "زورونا لمعرفة المزيد",
+        "Prayer Times": "أوقات الصلاة",
+        "Previous": "السابق",
+        "Next": "التالي",
+        "MAP & FIELDS":"الخريطة والحقول",
+        "SCHEDULE": "الجدول",
+        "GALLERY": "الصور",
+        "ABOUT US": "عنا",
+        "HALAL FOOD":"طعام حلال"
+    }
+};
+
+const translations = {
+    "en": {
+        "Fajr": "الفجر",
+        "Sunrise": "الشروق",
+        "Dhuhr": "الظهر",
+        "Asr": "العصر",
+        "Maghrib": "المغرب",
+        "Isha": "العشاء",
+        "STSS ANNUAL TOURNAMENT": "بطولة ستس السنوية",
+        "Welcome to the Ohio Sudanese American Soccer Federation Webpage.": "مرحبًا بك في صفحة الاتحاد السوداني الأمريكي لكرة القدم في أوهايو.",
+        "Visit us to know more": "زورونا لمعرفة المزيد",
+        "Prayer Times": "أوقات الصلاة",
+        "Previous": "السابق",
+        "Next": "التالي",
+        "MAP & FIELDS":"الخريطة والحقول",
+        // "MAP": "الخريطة",
+        // "FIELDS": "الملاعب",
+        "SCHEDULE": "الجدول",
+        "GALLERY": "الصور",
+        "ABOUT US": "عنا",
+        "HALAL FOOD": "طعام حلال"
+    },
+    "ar": {
+        "الفجر": "Fajr",
+        "الشروق": "Sunrise",
+        "الظهر": "Dhuhr",
+        "العصر": "Asr",
+        "المغرب": "Maghrib",
+        "العشاء": "Isha",
+        "بطولة ستس السنوية": "STSS ANNUAL TOURNAMENT",
+        "مرحبًا بك في صفحة الاتحاد السوداني الأمريكي لكرة القدم في أوهايو.": "Welcome to the Ohio Sudanese American Soccer Federation Webpage.",
+        "زورونا لمعرفة المزيد": "Visit us to know more",
+        "أوقات الصلاة": "Prayer Times",
+        "السابق": "Previous",
+        "التالي": "Next",
+        "الخريطة والحقول":"MAP & FIELDS",
+        // "الخريطة": "MAP",
+        // "الملاعب": "FIELDS",
+        "الجدول": "SCHEDULE",
+        "الصور": "GALLERY",
+        "عنا": "ABOUT US",
+        "طعام حلال":"HALAL FOOD"
+    }
+};
+
+function translateContent() {
+    const langMap = translations[currentLanguage];
+
+    // Translate nav links
+    const navLinks = document.querySelectorAll('.nav-links ul li a');
+    navLinks.forEach(link => {
+        link.textContent = langMap[link.textContent.trim()] || link.textContent;
+    });
+
+
+    // Translate header content
+    document.querySelector('.text-box h1').textContent = langMap[document.querySelector('.text-box h1').textContent] || document.querySelector('.text-box h1').textContent;
+    document.querySelector('.text-box p').textContent = langMap[document.querySelector('.text-box p').textContent] || document.querySelector('.text-box p').textContent;
+    document.querySelector('.hero-btn').textContent = langMap[document.querySelector('.hero-btn').textContent] || document.querySelector('.hero-btn').textContent;
+
+    // Translate Prayer Times heading
+    const prayerTimesTitle = document.querySelector('.prayer-times-content h1 span');
+    prayerTimesTitle.textContent = langMap[prayerTimesTitle.textContent] || prayerTimesTitle.textContent;
+
+    // Translate the prayer times table content
+    const prayerTimesTable = document.querySelector('#prayer-times-section table');
+    if (prayerTimesTable) {
+        const rows = prayerTimesTable.querySelectorAll('tr');
+        rows.forEach(row => {
+            const cells = row.querySelectorAll('td');
+            if (cells && cells.length > 0) {
+                const prayerTranslation = langMap[cells[0].textContent.replace(':', '').trim()];
+                if (prayerTranslation) { // Check if translation exists
+                    cells[0].textContent = prayerTranslation + ":";
+                }
+            }
+        });
+    }
+
+
+    // Translate navigation buttons
+    const navButtons = document.querySelectorAll('.navigation-buttons button');
+    navButtons.forEach(button => {
+        button.textContent = langMap[button.textContent] || button.textContent;
+    });
+
+    // Toggle language for next call
+    currentLanguage = currentLanguage === "en" ? "ar" : "en";
+}
+
+
+document.getElementById('translateBtn').addEventListener('click', translateContent);
