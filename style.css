@@ -294,12 +294,14 @@ footer {
 #translateBtn:hover {
     background-color: #2980b9; /* Adjust the hover color */
 }
+
 iframe {
-    width: 100%; /* This will set the iframe to the full width of its container */
+    width: 80%; /* This will set the iframe to the full width of its container */
     height: 60vh; /* This will make the height to be 60% of the viewport height */
-    max-height: 100%; /* This ensures that the iframe never grows beyond its container */
+    max-height: 80%; /* This ensures that the iframe never grows beyond its container */
     border: none; /* Removes any default border that the iframe might have */
     overflow: hidden; /* Ensures no scrollbar appears within the iframe */
+    padding-top: 50px;
 }
 
 @media(max-width: 1024px) {
@@ -318,7 +320,7 @@ iframe {
         height: 56.25vw; /* This maintains the 16:9 aspect ratio based on the width. */
     }
     .text-box h1 {
-        font-size: 28px;
+        font-size: 40px;
     }
     #openSidePanel {
         display: block;
@@ -400,9 +402,7 @@ iframe {
         transition: background-color 0.3s;
         font-size: 14px; /* Decrease font size for a smaller button */
     }
-    .hero-btn{
-        font-size: 13px;
-    }
+    
     
 }
 @media(min-width: 1025px) {
