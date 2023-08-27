@@ -15,7 +15,7 @@ body {
     flex-direction: column;
     align-items: center;
     background-color: rgba(255, 255, 255, 0.8);
-    padding: 30px; /* Increased padding */
+    padding: 0px; /* Increased padding */
     border-radius: 15px;
     margin: 20px auto;
     max-width: 600px; /* Increased max-width */
@@ -213,8 +213,8 @@ nav img {
 }
 
 .hero-btn:hover {
-    border: 1px solid #f44336;
-    background: #f44336;
+    border: 1px solid #000;
+    background: #fff;
     transition: 1s;
 }
 
@@ -322,7 +322,7 @@ iframe {
         height: 56.25vw; /* This maintains the 16:9 aspect ratio based on the width. */
     }
     .text-box h1 {
-        font-size: 28px;
+        font-size: 40px;
     }
     #openSidePanel {
         display: block;
@@ -334,6 +334,8 @@ iframe {
     }
     .text-box p{
         font-size: 20px;
+        border-radius: 10%;
+        padding-top: 30px;
     }
 
     /* Hide the close button inside the side panel by default */
@@ -406,8 +408,13 @@ iframe {
     }
     .hero-btn{
         font-size: 17px;
+        color:#73a4c9;
     }
-    
+    #countdown {
+        font-size: 20px;
+        text-align: center;
+        margin-top: 10px;
+      }
 }
 @media(min-width: 1025px) {
 
@@ -434,6 +441,7 @@ iframe {
     }
     .text-box h1 {
         font-size: 48px; /* Adjust this value based on your preference */
+        font-style: italic;
     }
 
     .text-box p {

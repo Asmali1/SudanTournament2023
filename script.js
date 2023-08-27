@@ -219,7 +219,9 @@ const translations_prayer = {
         "SCHEDULE": "SCHEDULE",
         "GALLERY": "GALLERY",
         "ABOUT US": "ABOUT US",
-        "HALAL FOOD": "HALAL FOOD"
+        "HALAL FOOD": "HALAL FOOD",
+        "The Ohio Organizing Committee is pleased to announce that the Sudanese Soccer tournament will take place on the 2nd and 3rd of September 2023 in Columbus,Ohio.": "The Ohio Organizing Committee is pleased to announce that the Sudanese Soccer tournament will take place on the 2nd and 3rd of September 2023 in Columbus,Ohio.",
+        "Translate Page": "Translate Page"
     },
     "ar": {
         "Fajr": "الفجر",
@@ -229,16 +231,18 @@ const translations_prayer = {
         "Maghrib": "المغرب",
         "Isha": "العشاء",
         "SST ANNUAL TOURNAMENT": "SST البطولة السنوية",
-        "Welcome to the Ohio Sudanese American Soccer Federation Webpage.": "مرحبًا بك في صفحة الاتحاد السوداني الأمريكي لكرة القدم في أوهايو.",
+        "Welcome to the Ohio Sudanese American Soccer Federation Webpage.": "مرحبًا بك في صفحة الاتحاد السوداني الأمريكي لكرة القدم في أوهايو",
         "Visit us to know more": "زورونا لمعرفة المزيد",
         "Prayer Times": "أوقات الصلاة",
         "Previous": "السابق",
         "Next": "التالي",
-        "MAP & FIELDS":"الخريطة والحقول",
+        "MAP & FIELDS":"الخريطة",
         "SCHEDULE": "الجدول",
         "GALLERY": "الصور",
         "ABOUT US": "عنا",
-        "HALAL FOOD":"طعام حلال"
+        "HALAL FOOD":"طعام حلال",
+        "The Ohio Organizing Committee is pleased to announce that the Sudanese Soccer tournament will take place on the 2nd and 3rd of September 2023 in Columbus,Ohio.": "يطيب للجنة المنظمة أن تعلن قيام الدورة الرياضية الواحد وعشرون في اليوم الثاني والثالث من شهر سبتمبر ٢٠٢٣ بمدينة كولمبوس اوهايو ",
+        "Translate Page": "ترجمة الصفحة"
     }
 };
 
@@ -251,18 +255,20 @@ const translations = {
         "Maghrib": "المغرب",
         "Isha": "العشاء",
         "SST ANNUAL TOURNAMENT": "SST البطولة السنوية",
-        "Welcome to the Ohio Sudanese American Soccer Federation Webpage.": "مرحبًا بك في صفحة الاتحاد السوداني الأمريكي لكرة القدم في أوهايو.",
+        "Welcome to the Ohio Sudanese American Soccer Federation Webpage.": "مرحبًا بك في صفحة الاتحاد السوداني الأمريكي لكرة القدم في أوهايو",
         "Visit us to know more": "زورونا لمعرفة المزيد",
         "Prayer Times": "أوقات الصلاة",
         "Previous": "السابق",
         "Next": "التالي",
-        "MAP & FIELDS":"الخريطة والحقول",
+        "MAP & FIELDS":"الخريطة",
         // "MAP": "الخريطة",
         // "FIELDS": "الملاعب",
         "SCHEDULE": "الجدول",
         "GALLERY": "الصور",
         "ABOUT US": "عنا",
-        "HALAL FOOD": "طعام حلال"
+        "HALAL FOOD": "طعام حلال",
+        "The Ohio Organizing Committee is pleased to announce that the Sudanese Soccer tournament will take place on the 2nd and 3rd of September 2023 in Columbus,Ohio.": "يطيب للجنة المنظمة أن تعلن قيام الدورة الرياضية الواحد وعشرون في اليوم الثاني والثالث من شهر سبتمبر ٢٠٢٣ بمدينة كولمبوس اوهايو ",
+        "Translate Page": "ترجمة الصفحة"
     },
     "ar": {
         "الفجر": "Fajr",
@@ -272,18 +278,20 @@ const translations = {
         "المغرب": "Maghrib",
         "العشاء": "Isha",
         "SST البطولة السنوية": "SST ANNUAL TOURNAMENT",
-        "مرحبًا بك في صفحة الاتحاد السوداني الأمريكي لكرة القدم في أوهايو.": "Welcome to the Ohio Sudanese American Soccer Federation Webpage.",
+        "مرحبًا بك في صفحة الاتحاد السوداني الأمريكي لكرة القدم في أوهايو": "Welcome to the Ohio Sudanese American Soccer Federation Webpage.",
         "زورونا لمعرفة المزيد": "Visit us to know more",
         "أوقات الصلاة": "Prayer Times",
         "السابق": "Previous",
         "التالي": "Next",
-        "الخريطة والحقول":"MAP & FIELDS",
+        "الخريطة":"MAP & FIELDS",
         // "الخريطة": "MAP",
         // "الملاعب": "FIELDS",
         "الجدول": "SCHEDULE",
         "الصور": "GALLERY",
         "عنا": "ABOUT US",
-        "طعام حلال":"HALAL FOOD"
+        "طعام حلال":"HALAL FOOD",
+        "يطيب للجنة المنظمة أن تعلن قيام الدورة الرياضية الواحد وعشرون في اليوم الثاني والثالث من شهر سبتمبر ٢٠٢٣ بمدينة كولمبوس اوهايو ": "The Ohio Organizing Committee is pleased to announce that the Sudanese Soccer tournament will take place on the 2nd and 3rd of September 2023 in Columbus,Ohio.",
+        "ترجمة الصفحة":"Translate Page"
     }
 };
 
@@ -334,3 +342,26 @@ function translateContent() {
 
 
 document.getElementById('translateBtn').addEventListener('click', translateContent);
+
+// count down timer
+const targetDate = new Date("2023-09-01T23:59:59").getTime();
+
+// Update the countdown every second
+const countdown = setInterval(function() {
+  const now = new Date().getTime();
+  const timeRemaining = targetDate - now;
+
+  const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+  document.getElementById("timer").innerHTML = `${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`;
+
+  // If the countdown is over, display a message
+  if (timeRemaining < 0) {
+    clearInterval(countdownInterval);
+    document.getElementById("timer").innerHTML = "The day is here!";
+  }
+}, 1000);
+
