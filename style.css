@@ -337,7 +337,7 @@ iframe {
         color: #ddd;  /* This is a slightly darker shade of white for hover effect */
     }
     .text-box p{
-        font-size: 20px;
+        font-size: 16px;
     }
 
     /* Hide the close button inside the side panel by default */
