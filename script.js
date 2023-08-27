@@ -341,3 +341,24 @@ function translateContent() {
 
 
 document.getElementById('translateBtn').addEventListener('click', translateContent);
+
+const targetDate = new Date("2023-09-01T23:59:59").getTime();
+
+// Update the countdown every second
+const countdown = setInterval(function() {
+  const now = new Date().getTime();
+  const timeRemaining = targetDate - now;
+
+  const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+  document.getElementById("timer").innerHTML = `${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`;
+
+  // If the countdown is over, display a message
+  if (timeRemaining < 0) {
+    clearInterval(countdownInterval);
+    document.getElementById("timer").innerHTML = "The day is here!";
+  }
+}, 1000);
