@@ -219,7 +219,9 @@ const translations_prayer = {
         "SCHEDULE": "SCHEDULE",
         "GALLERY": "GALLERY",
         "ABOUT US": "ABOUT US",
-        "HALAL FOOD": "HALAL FOOD"
+        "HALAL FOOD": "HALAL FOOD",
+        "FIELD ADDRESS": "FIELD ADDRESS"
+
     },
     "ar": {
         "Fajr": "الفجر",
@@ -238,7 +240,8 @@ const translations_prayer = {
         "SCHEDULE": "الجدول",
         "GALLERY": "الصور",
         "ABOUT US": "عنا",
-        "HALAL FOOD":"طعام حلال"
+        "HALAL FOOD":"طعام حلال",
+        "FIELD ADDRESS": "عنوان الملعب"
     }
 };
 
@@ -262,7 +265,9 @@ const translations = {
         "SCHEDULE": "الجدول",
         "GALLERY": "الصور",
         "ABOUT US": "عنا",
-        "HALAL FOOD": "طعام حلال"
+        "HALAL FOOD": "طعام حلال",
+        "FIELD ADDRESS": "عنوان الملعب"
+
     },
     "ar": {
         "الفجر": "Fajr",
@@ -283,7 +288,9 @@ const translations = {
         "الجدول": "SCHEDULE",
         "الصور": "GALLERY",
         "عنا": "ABOUT US",
-        "طعام حلال":"HALAL FOOD"
+        "طعام حلال":"HALAL FOOD",
+        "عنوان الملعب": "FIELD ADDRESS"
+
     }
 };
 
