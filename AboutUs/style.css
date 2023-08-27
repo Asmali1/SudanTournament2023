@@ -13,6 +13,9 @@
     background-size: cover;
     position: relative;
 }
+.fas.fa-bars.fa-2x {
+    color: white; /* changes the hamburger menu icon color to white */
+}
 
 nav {
     display: flex;

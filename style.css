@@ -452,3 +452,11 @@ iframe {
     }
   
 }
+@media screen and (min-width: 1280px) { /* or whatever min-width makes sense for your layout */
+    iframe {
+        width: 100%; 
+        height:83%
+    }
+    
+
+}
