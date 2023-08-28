@@ -222,7 +222,9 @@ const translations_prayer = {
         "HALAL FOOD": "HALAL FOOD",
         "FIELD ADDRESS": "FIELD ADDRESS",
         "NEARBY MASJIDS": "NEARBY MASJIDS",
-        "COLUMBUS ATTRACTIONS": "COLUMBUS ATTRACTIONS"
+        "COLUMBUS ATTRACTIONS": "COLUMBUS ATTRACTIONS",
+        "SUPPORT SUDAN WITH ZELLE": "SUPPORT SUDAN WITH ZELLE"
+
 
     },
     "ar": {
@@ -245,7 +247,9 @@ const translations_prayer = {
         "HALAL FOOD":"طعام حلال",
         "FIELD ADDRESS": "عنوان الملعب",
         "NEARBY MASJIDS": "مساجد قريبة",
-        "COLUMBUS ATTRACTIONS": "معالم كولومبوس"
+        "COLUMBUS ATTRACTIONS": "معالم كولومبوس",
+        "SUPPORT SUDAN WITH ZELLE": "دعم السودان عبر زيل (طريقة دفع)"
+
     }
 };
 
@@ -272,7 +276,9 @@ const translations = {
         "HALAL FOOD": "طعام حلال",
         "FIELD ADDRESS": "عنوان الملعب",
         "NEARBY MASJIDS": "مساجد قريبة",
-        "COLUMBUS ATTRACTIONS": "معالم كولومبوس"
+        "COLUMBUS ATTRACTIONS": "معالم كولومبوس",
+        "SUPPORT SUDAN WITH ZELLE": "دعم السودان عبر زيل (طريقة دفع)"
+
 
     },
     "ar": {
@@ -297,7 +303,9 @@ const translations = {
         "طعام حلال":"HALAL FOOD",
         "عنوان الملعب": "FIELD ADDRESS",
         "مساجد قريبة": "NEARBY MASJIDS",
-        "معالم كولومبوس": "COLUMBUS ATTRACTIONS"
+        "معالم كولومبوس": "COLUMBUS ATTRACTIONS",
+        "دعم السودان عبر زيل (طريقة دفع)": "SUPPORT SUDAN WITH ZELLE"
+
 
     }
 };
