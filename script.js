@@ -220,7 +220,9 @@ const translations_prayer = {
         "GALLERY": "GALLERY",
         "ABOUT US": "ABOUT US",
         "HALAL FOOD": "HALAL FOOD",
-        "FIELD ADDRESS": "FIELD ADDRESS"
+        "FIELD ADDRESS": "FIELD ADDRESS",
+        "NEARBY MASJIDS": "NEARBY MASJIDS",
+        "COLUMBUS ATTRACTIONS": "COLUMBUS ATTRACTIONS"
 
     },
     "ar": {
@@ -241,7 +243,9 @@ const translations_prayer = {
         "GALLERY": "الصور",
         "ABOUT US": "عنا",
         "HALAL FOOD":"طعام حلال",
-        "FIELD ADDRESS": "عنوان الملعب"
+        "FIELD ADDRESS": "عنوان الملعب",
+        "NEARBY MASJIDS": "مساجد قريبة",
+        "COLUMBUS ATTRACTIONS": "معالم كولومبوس"
     }
 };
 
@@ -266,7 +270,9 @@ const translations = {
         "GALLERY": "الصور",
         "ABOUT US": "عنا",
         "HALAL FOOD": "طعام حلال",
-        "FIELD ADDRESS": "عنوان الملعب"
+        "FIELD ADDRESS": "عنوان الملعب",
+        "NEARBY MASJIDS": "مساجد قريبة",
+        "COLUMBUS ATTRACTIONS": "معالم كولومبوس"
 
     },
     "ar": {
@@ -289,7 +295,9 @@ const translations = {
         "الصور": "GALLERY",
         "عنا": "ABOUT US",
         "طعام حلال":"HALAL FOOD",
-        "عنوان الملعب": "FIELD ADDRESS"
+        "عنوان الملعب": "FIELD ADDRESS",
+        "مساجد قريبة": "NEARBY MASJIDS",
+        "معالم كولومبوس": "COLUMBUS ATTRACTIONS"
 
     }
 };
