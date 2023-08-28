@@ -223,7 +223,7 @@ const translations_prayer = {
         "FIELD ADDRESS": "FIELD ADDRESS",
         "NEARBY MASJIDS": "NEARBY MASJIDS",
         "COLUMBUS ATTRACTIONS": "COLUMBUS ATTRACTIONS",
-        "SUPPORT SUDAN WITH ZELLE": "SUPPORT SUDAN WITH ZELLE"
+        "Support Sudan with Zelle": "Support Sudan with Zelle"
 
 
     },
@@ -248,7 +248,7 @@ const translations_prayer = {
         "FIELD ADDRESS": "عنوان الملعب",
         "NEARBY MASJIDS": "مساجد قريبة",
         "COLUMBUS ATTRACTIONS": "معالم كولومبوس",
-        "SUPPORT SUDAN WITH ZELLE": "دعم السودان عبر زيل (طريقة دفع)"
+        "Support Sudan with Zelle": "دعم السودان عبر زيل (طريقة دفع)"
 
     }
 };
@@ -277,7 +277,7 @@ const translations = {
         "FIELD ADDRESS": "عنوان الملعب",
         "NEARBY MASJIDS": "مساجد قريبة",
         "COLUMBUS ATTRACTIONS": "معالم كولومبوس",
-        "SUPPORT SUDAN WITH ZELLE": "دعم السودان عبر زيل (طريقة دفع)"
+        "Support Sudan with Zelle": "دعم السودان عبر زيل (طريقة دفع)"
 
 
     },
@@ -304,7 +304,7 @@ const translations = {
         "عنوان الملعب": "FIELD ADDRESS",
         "مساجد قريبة": "NEARBY MASJIDS",
         "معالم كولومبوس": "COLUMBUS ATTRACTIONS",
-        "دعم السودان عبر زيل (طريقة دفع)": "SUPPORT SUDAN WITH ZELLE"
+        "دعم السودان عبر زيل (طريقة دفع)": "Support Sudan with Zelle"
 
 
     }
@@ -323,8 +323,10 @@ function translateContent() {
     // Translate header content
     document.querySelector('.text-box h1').textContent = langMap[document.querySelector('.text-box h1').textContent] || document.querySelector('.text-box h1').textContent;
     document.querySelector('.text-box p').textContent = langMap[document.querySelector('.text-box p').textContent] || document.querySelector('.text-box p').textContent;
-    document.querySelector('.hero-btn').textContent = langMap[document.querySelector('.hero-btn').textContent] || document.querySelector('.hero-btn').textContent;
-
+    var heroButtons = document.querySelectorAll('.hero-btn');
+    for (var i = 0; i < heroButtons.length; i++) {
+        heroButtons[i].textContent = langMap[heroButtons[i].textContent] || heroButtons[i].textContent;
+    }
     // Translate Prayer Times heading
     const prayerTimesTitle = document.querySelector('.prayer-times-content h1 span');
     prayerTimesTitle.textContent = langMap[prayerTimesTitle.textContent] || prayerTimesTitle.textContent;
