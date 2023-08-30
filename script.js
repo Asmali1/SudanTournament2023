@@ -224,7 +224,7 @@ const translations_prayer = {
         "NEARBY MASJIDS": "NEARBY MASJIDS",
         "COLUMBUS ATTRACTIONS": "COLUMBUS ATTRACTIONS",
         "Support Sudan with Zelle": "Support Sudan with Zelle",
-        "Translate Page to Arabic": "Translate Page to Arabic",
+        "ترجمه عربيه": "ترجمه عربيه",
 
 
     },
@@ -250,7 +250,7 @@ const translations_prayer = {
         "NEARBY MASJIDS": "مساجد قريبة",
         "COLUMBUS ATTRACTIONS": "معالم كولومبوس",
         "Support Sudan with Zelle": "دعم السودان عبر زيل (طريقة دفع)",
-        "Translate Page to Arabic": "ترجمة الصفحة",
+        "ترجمه عربيه": "Translate to English",
 
 
     }
@@ -281,7 +281,8 @@ const translations = {
         "NEARBY MASJIDS": "مساجد قريبة",
         "COLUMBUS ATTRACTIONS": "معالم كولومبوس",
         "Support Sudan with Zelle": "دعم السودان عبر زيل (طريقة دفع)",
-        "Translate Website to Arabic": "ترجمة الموقع إلى الإنجليزية"
+        "ترجمه عربيه": "Translate to English",
+
 
 
     },
@@ -309,7 +310,7 @@ const translations = {
         "مساجد قريبة": "NEARBY MASJIDS",
         "معالم كولومبوس": "COLUMBUS ATTRACTIONS",
         "دعم السودان عبر زيل (طريقة دفع)": "Support Sudan with Zelle",
-        "ترجمة الموقع إلى الإنجليزية": "Translate Website to Arabic",
+        "Translate to English": "ترجمه عربيه",
 
 
 
