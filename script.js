@@ -223,7 +223,8 @@ const translations_prayer = {
         "FIELD ADDRESS": "FIELD ADDRESS",
         "NEARBY MASJIDS": "NEARBY MASJIDS",
         "COLUMBUS ATTRACTIONS": "COLUMBUS ATTRACTIONS",
-        "Support Sudan with Zelle": "Support Sudan with Zelle"
+        "Support Sudan with Zelle": "Support Sudan with Zelle",
+        "Translate Page to Arabic": "Translate Page to Arabic",
 
 
     },
@@ -248,7 +249,9 @@ const translations_prayer = {
         "FIELD ADDRESS": "عنوان الملعب",
         "NEARBY MASJIDS": "مساجد قريبة",
         "COLUMBUS ATTRACTIONS": "معالم كولومبوس",
-        "Support Sudan with Zelle": "دعم السودان عبر زيل (طريقة دفع)"
+        "Support Sudan with Zelle": "دعم السودان عبر زيل (طريقة دفع)",
+        "Translate Page to Arabic": "ترجمة الصفحة",
+
 
     }
 };
@@ -277,7 +280,8 @@ const translations = {
         "FIELD ADDRESS": "عنوان الملعب",
         "NEARBY MASJIDS": "مساجد قريبة",
         "COLUMBUS ATTRACTIONS": "معالم كولومبوس",
-        "Support Sudan with Zelle": "دعم السودان عبر زيل (طريقة دفع)"
+        "Support Sudan with Zelle": "دعم السودان عبر زيل (طريقة دفع)",
+        "Translate Website to Arabic": "ترجمة الموقع إلى الإنجليزية"
 
 
     },
@@ -304,7 +308,9 @@ const translations = {
         "عنوان الملعب": "FIELD ADDRESS",
         "مساجد قريبة": "NEARBY MASJIDS",
         "معالم كولومبوس": "COLUMBUS ATTRACTIONS",
-        "دعم السودان عبر زيل (طريقة دفع)": "Support Sudan with Zelle"
+        "دعم السودان عبر زيل (طريقة دفع)": "Support Sudan with Zelle",
+        "ترجمة الموقع إلى الإنجليزية": "Translate Website to Arabic",
+
 
 
     }
@@ -318,6 +324,9 @@ function translateContent() {
     navLinks.forEach(link => {
         link.textContent = langMap[link.textContent.trim()] || link.textContent;
     });
+// Translate the "Translate Page" button text
+document.getElementById('translateBtn').textContent = langMap[document.getElementById('translateBtn').textContent.trim()] || document.getElementById('translateBtn').textContent;
+
 
 
     // Translate header content
