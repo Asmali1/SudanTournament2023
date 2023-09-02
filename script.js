@@ -224,7 +224,10 @@ const translations_prayer = {
         "NEARBY MASJIDS": "NEARBY MASJIDS",
         "COLUMBUS ATTRACTIONS": "COLUMBUS ATTRACTIONS",
         "Support Sudan with Zelle": "Support Sudan with Zelle",
+        "LEADERBOARD & SCORES": "LEADERBOARD & SCORES", // Add this line
+
         "ترجمه عربيه": "ترجمه عربيه",
+        
 
 
     },
@@ -250,6 +253,8 @@ const translations_prayer = {
         "NEARBY MASJIDS": "مساجد قريبة",
         "COLUMBUS ATTRACTIONS": "معالم كولومبوس",
         "Support Sudan with Zelle": "دعم السودان عبر زيل (طريقة دفع)",
+        "LEADERBOARD & SCORES": "لوحة النتائج والأهداف", // Add this line, translation for Leaderboard & Scores in Arabic
+
         "ترجمه عربيه": "Translate to English",
 
 
@@ -281,6 +286,8 @@ const translations = {
         "NEARBY MASJIDS": "مساجد قريبة",
         "COLUMBUS ATTRACTIONS": "معالم كولومبوس",
         "Support Sudan with Zelle": "دعم السودان عبر زيل (طريقة دفع)",
+        "LEADERBOARD & SCORES": "لوحة النتائج والأهداف", // Add this line, translation for Leaderboard & Scores in Arabic
+
         "ترجمه عربيه": "Translate to English",
 
 
@@ -310,6 +317,8 @@ const translations = {
         "مساجد قريبة": "NEARBY MASJIDS",
         "معالم كولومبوس": "COLUMBUS ATTRACTIONS",
         "دعم السودان عبر زيل (طريقة دفع)": "Support Sudan with Zelle",
+        "لوحة النتائج والأهداف": "LEADERBOARD & SCORES", // Add this line, translation for Leaderboard & Scores in English
+
         "Translate to English": "ترجمه عربيه",
 
 
